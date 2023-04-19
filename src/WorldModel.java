@@ -29,4 +29,8 @@ public final class WorldModel {
         }
         return list;
     }
+
+    public boolean withinBounds(Point pos) {
+        return pos.y >= 0 && pos.y < numRows && pos.x >= 0 && pos.x < numCols;
+    }
 }

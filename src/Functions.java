@@ -491,12 +491,8 @@ public final class Functions {
         addEntity(world, entity);
     }
 
-    public static boolean withinBounds(WorldModel world, Point pos) {
-        return pos.y >= 0 && pos.y < world.numRows && pos.x >= 0 && pos.x < world.numCols;
-    }
-
     public static boolean isOccupied(WorldModel world, Point pos) {
-        return withinBounds(world, pos) && getOccupancyCell(world, pos) != null;
+        return world.withinBounds(pos) && getOccupancyCell(world, pos) != null;
     }
 
     public static Optional<Entity> nearestEntity(List<Entity> entities, Point pos) {
@@ -544,7 +540,7 @@ public final class Functions {
        intended destination cell.
     */
     public static void addEntity(WorldModel world, Entity entity) {
-        if (withinBounds(world, entity.position)) {
+        if (world.withinBounds(entity.position)) {
             setOccupancyCell(world, entity.position, entity);
             world.entities.add(entity);
         }
@@ -552,7 +548,7 @@ public final class Functions {
 
     public static void moveEntity(WorldModel world, EventScheduler scheduler, Entity entity, Point pos) {
         Point oldPos = entity.position;
-        if (withinBounds(world, pos) && !pos.equals(oldPos)) {
+        if (world.withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(world, oldPos, null);
             Optional<Entity> occupant = getOccupant(world, pos);
             occupant.ifPresent(target -> removeEntity(world, scheduler, target));
@@ -567,7 +563,7 @@ public final class Functions {
     }
 
     public static void removeEntityAt(WorldModel world, Point pos) {
-        if (withinBounds(world, pos) && getOccupancyCell(world, pos) != null) {
+        if (world.withinBounds(pos) && getOccupancyCell(world, pos) != null) {
             Entity entity = getOccupancyCell(world, pos);
 
             /* This moves the entity just outside of the grid for
@@ -799,7 +795,7 @@ public final class Functions {
     }
 
     public static Optional<PImage> getBackgroundImage(WorldModel world, Point pos) {
-        if (withinBounds(world, pos)) {
+        if (world.withinBounds(pos)) {
             return Optional.of(getCurrentImage(getBackgroundCell(world, pos)));
         } else {
             return Optional.empty();
