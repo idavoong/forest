@@ -80,7 +80,7 @@ public final class VirtualWorld extends PApplet {
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         for (Entity entity : world.entities) {
-            Functions.scheduleActions(entity, scheduler, world, imageStore);
+            entity.scheduleActions(scheduler, world, imageStore);
         }
     }
 
@@ -99,7 +99,7 @@ public final class VirtualWorld extends PApplet {
                 case LEFT -> dx -= 1;
                 case RIGHT -> dx += 1;
             }
-            Functions.shiftView(view, dx, dy);
+            view.shiftView(dx, dy);
         }
     }
 

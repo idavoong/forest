@@ -8,4 +8,9 @@ public final class Viewport {
         this.numRows = numRows;
         this.numCols = numCols;
     }
+
+    public void shift(int col, int row) {
+        this.col = col;
+        this.row = row;
+    }
 }

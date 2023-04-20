@@ -33,4 +33,15 @@ public final class WorldModel {
     public boolean withinBounds(Point pos) {
         return pos.y >= 0 && pos.y < numRows && pos.x >= 0 && pos.x < numCols;
     }
+
+    /*
+       Assumes that there is no entity currently occupying the
+       intended destination cell.
+    */
+    public void addEntity(Entity entity) {
+        if (withinBounds(entity.position)) {
+            Functions.setOccupancyCell(this, entity.position, entity);
+            entities.add(entity);
+        }
+    }
 }

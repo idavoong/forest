@@ -15,4 +15,16 @@ public final class Action {
         this.imageStore = imageStore;
         this.repeatCount = repeatCount;
     }
+
+    public void executeAction(EventScheduler scheduler) {
+        switch (kind) {
+            case ACTIVITY:
+                Functions.executeActivityAction(this, scheduler);
+                break;
+    
+            case ANIMATION:
+                Functions.executeAnimationAction(this, scheduler);
+                break;
+        }
+    }
 }
