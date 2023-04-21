@@ -68,7 +68,7 @@ public final class Functions {
 
     public static boolean moveToFairy(Entity fairy, WorldModel world, Entity target, EventScheduler scheduler) {
         if (adjacent(fairy.position, target.position)) {
-            removeEntity(world, scheduler, target);
+            world.removeEntity(scheduler, target);
             return true;
         } else {
             Point nextPos = fairy.nextPositionFairy(world, target.position);
@@ -122,40 +122,11 @@ public final class Functions {
         return min + rand.nextDouble() * (max - min);
     }
 
-    public static void unscheduleAllEvents(EventScheduler scheduler, Entity entity) {
-        List<Event> pending = scheduler.pendingEvents.remove(entity);
-
-        if (pending != null) {
-            for (Event event : pending) {
-                scheduler.eventQueue.remove(event);
-            }
-        }
-    }
-
-    public static void removePendingEvent(EventScheduler scheduler, Event event) {
-        List<Event> pending = scheduler.pendingEvents.get(event.entity);
-
-        if (pending != null) {
-            pending.remove(event);
-        }
-    }
-
-    public static void updateOnTime(EventScheduler scheduler, double time) {
-        double stopTime = scheduler.currentTime + time;
-        while (!scheduler.eventQueue.isEmpty() && scheduler.eventQueue.peek().time <= stopTime) {
-            Event next = scheduler.eventQueue.poll();
-            Functions.removePendingEvent(scheduler, next);
-            scheduler.currentTime = next.time;
-            next.action.executeAction(scheduler);
-        }
-        scheduler.currentTime = stopTime;
-    }
-
     public static void parseSapling(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == SAPLING_NUM_PROPERTIES) {
             int health = Integer.parseInt(properties[SAPLING_HEALTH]);
-            Entity entity = createSapling(id, pt, Functions.getImageList(imageStore, SAPLING_KEY), health);
-            tryAddEntity(world, entity);
+            Entity entity = createSapling(id, pt, imageStore.getImageList(SAPLING_KEY), health);
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", SAPLING_KEY, SAPLING_NUM_PROPERTIES));
         }
@@ -163,8 +134,8 @@ public final class Functions {
 
     public static void parseDude(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == DUDE_NUM_PROPERTIES) {
-            Entity entity = createDudeNotFull(id, pt, Double.parseDouble(properties[DUDE_ACTION_PERIOD]), Double.parseDouble(properties[DUDE_ANIMATION_PERIOD]), Integer.parseInt(properties[DUDE_LIMIT]), Functions.getImageList(imageStore, DUDE_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createDudeNotFull(id, pt, Double.parseDouble(properties[DUDE_ACTION_PERIOD]), Double.parseDouble(properties[DUDE_ANIMATION_PERIOD]), Integer.parseInt(properties[DUDE_LIMIT]), imageStore.getImageList(DUDE_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", DUDE_KEY, DUDE_NUM_PROPERTIES));
         }
@@ -172,8 +143,8 @@ public final class Functions {
 
     public static void parseFairy(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == FAIRY_NUM_PROPERTIES) {
-            Entity entity = createFairy(id, pt, Double.parseDouble(properties[FAIRY_ACTION_PERIOD]), Double.parseDouble(properties[FAIRY_ANIMATION_PERIOD]), Functions.getImageList(imageStore, FAIRY_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createFairy(id, pt, Double.parseDouble(properties[FAIRY_ACTION_PERIOD]), Double.parseDouble(properties[FAIRY_ANIMATION_PERIOD]), imageStore.getImageList(FAIRY_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", FAIRY_KEY, FAIRY_NUM_PROPERTIES));
         }
@@ -181,8 +152,8 @@ public final class Functions {
 
     public static void parseTree(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == TREE_NUM_PROPERTIES) {
-            Entity entity = createTree(id, pt, Double.parseDouble(properties[TREE_ACTION_PERIOD]), Double.parseDouble(properties[TREE_ANIMATION_PERIOD]), Integer.parseInt(properties[TREE_HEALTH]), Functions.getImageList(imageStore, TREE_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createTree(id, pt, Double.parseDouble(properties[TREE_ACTION_PERIOD]), Double.parseDouble(properties[TREE_ANIMATION_PERIOD]), Integer.parseInt(properties[TREE_HEALTH]), imageStore.getImageList(TREE_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", TREE_KEY, TREE_NUM_PROPERTIES));
         }
@@ -190,8 +161,8 @@ public final class Functions {
 
     public static void parseObstacle(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == OBSTACLE_NUM_PROPERTIES) {
-            Entity entity = createObstacle(id, pt, Double.parseDouble(properties[OBSTACLE_ANIMATION_PERIOD]), Functions.getImageList(imageStore, OBSTACLE_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createObstacle(id, pt, Double.parseDouble(properties[OBSTACLE_ANIMATION_PERIOD]), imageStore.getImageList(OBSTACLE_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", OBSTACLE_KEY, OBSTACLE_NUM_PROPERTIES));
         }
@@ -199,33 +170,19 @@ public final class Functions {
 
     public static void parseHouse(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == HOUSE_NUM_PROPERTIES) {
-            Entity entity = createHouse(id, pt, Functions.getImageList(imageStore, HOUSE_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createHouse(id, pt, imageStore.getImageList(HOUSE_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", HOUSE_KEY, HOUSE_NUM_PROPERTIES));
         }
     }
     public static void parseStump(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == STUMP_NUM_PROPERTIES) {
-            Entity entity = createStump(id, pt, Functions.getImageList(imageStore, STUMP_KEY));
-            tryAddEntity(world, entity);
+            Entity entity = createStump(id, pt, imageStore.getImageList(STUMP_KEY));
+            world.tryAddEntity(entity);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", STUMP_KEY, STUMP_NUM_PROPERTIES));
         }
-    }
-
-    public static void tryAddEntity(WorldModel world, Entity entity) {
-        if (isOccupied(world, entity.position)) {
-            // arguably the wrong type of exception, but we are not
-            // defining our own exceptions yet
-            throw new IllegalArgumentException("position occupied");
-        }
-
-        world.addEntity(entity);
-    }
-
-    public static boolean isOccupied(WorldModel world, Point pos) {
-        return world.withinBounds(pos) && getOccupancyCell(world, pos) != null;
     }
 
     public static Optional<Entity> nearestEntity(List<Entity> entities, Point pos) {
@@ -273,15 +230,10 @@ public final class Functions {
         if (world.withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(world, oldPos, null);
             Optional<Entity> occupant = getOccupant(world, pos);
-            occupant.ifPresent(target -> removeEntity(world, scheduler, target));
+            occupant.ifPresent(target -> world.removeEntity(scheduler, target));
             setOccupancyCell(world, pos, entity);
             entity.position = pos;
         }
-    }
-
-    public static void removeEntity(WorldModel world, EventScheduler scheduler, Entity entity) {
-        unscheduleAllEvents(scheduler, entity);
-        removeEntityAt(world, entity.position);
     }
 
     public static void removeEntityAt(WorldModel world, Point pos) {
@@ -298,7 +250,7 @@ public final class Functions {
 
 
     public static Optional<Entity> getOccupant(WorldModel world, Point pos) {
-        if (isOccupied(world, pos)) {
+        if (world.isOccupied(pos)) {
             return Optional.of(getOccupancyCell(world, pos));
         } else {
             return Optional.empty();
@@ -400,7 +352,7 @@ public final class Functions {
         if(row < world.numRows){
             int rows = Math.min(cells.length, world.numCols);
             for (int col = 0; col < rows; col++){
-                world.background[row][col] = new Background(cells[col], Functions.getImageList(imageStore, cells[col]));
+                world.background[row][col] = new Background(cells[col], imageStore.getImageList(cells[col]));
             }
         }
     }
@@ -538,9 +490,6 @@ public final class Functions {
     public static void drawViewport(WorldView view) {
         drawBackground(view);
         drawEntities(view);
-    }
-    public static List<PImage> getImageList(ImageStore imageStore, String key) {
-        return imageStore.images.getOrDefault(key, imageStore.defaultImages);
     }
     public static void loadImages(Scanner in, ImageStore imageStore, PApplet screen) {
         int lineNumber = 0;

@@ -68,7 +68,7 @@ public final class Entity {
     
             if (Functions.moveToFairy(this, world, fairyTarget.get(), scheduler)) {
     
-                Entity sapling = Functions.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().id, tgtPos, Functions.getImageList(imageStore, Functions.SAPLING_KEY), 0);
+                Entity sapling = Functions.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().id, tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
     
                 world.addEntity(sapling);
                 sapling.scheduleActions(scheduler, world, imageStore);
@@ -100,8 +100,8 @@ public final class Entity {
         if (resourceCount >= resourceLimit) {
             Entity dude = Functions.createDudeFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
     
-            Functions.removeEntity(world, scheduler, this);
-            Functions.unscheduleAllEvents(scheduler, this);
+            world.removeEntity(scheduler, this);
+            scheduler.unscheduleAllEvents(this);
     
             world.addEntity(dude);
             dude.scheduleActions(scheduler, world, imageStore);
@@ -115,7 +115,7 @@ public final class Entity {
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         Entity dude = Functions.createDudeNotFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
     
-        Functions.removeEntity(world, scheduler, this);
+        world.removeEntity(scheduler, this);
     
         world.addEntity(dude);
         dude.scheduleActions(scheduler, world, imageStore);
@@ -125,11 +125,11 @@ public final class Entity {
         int horiz = Integer.signum(destPos.x - position.x);
         Point newPos = new Point(position.x + horiz, position.y);
     
-        if (horiz == 0 || Functions.isOccupied(world, newPos)  && Functions.getOccupancyCell(world, newPos).kind != EntityKind.HOUSE) {
+        if (horiz == 0 || world.isOccupied(newPos)  && Functions.getOccupancyCell(world, newPos).kind != EntityKind.HOUSE) {
             int vert = Integer.signum(destPos.y - position.y);
             newPos = new Point(position.x, position.y + vert);
     
-            if (vert == 0 || Functions.isOccupied(world, newPos)  && Functions.getOccupancyCell(world, newPos).kind != EntityKind.HOUSE) {
+            if (vert == 0 || world.isOccupied(newPos)  && Functions.getOccupancyCell(world, newPos).kind != EntityKind.HOUSE) {
                 newPos = position;
             }
         }
@@ -141,11 +141,11 @@ public final class Entity {
         int horiz = Integer.signum(destPos.x - position.x);
         Point newPos = new Point(position.x + horiz, position.y);
     
-        if (horiz == 0 || Functions.isOccupied(world, newPos) && Functions.getOccupancyCell(world, newPos).kind != EntityKind.STUMP) {
+        if (horiz == 0 || world.isOccupied(newPos) && Functions.getOccupancyCell(world, newPos).kind != EntityKind.STUMP) {
             int vert = Integer.signum(destPos.y - position.y);
             newPos = new Point(position.x, position.y + vert);
     
-            if (vert == 0 || Functions.isOccupied(world, newPos) && Functions.getOccupancyCell(world, newPos).kind != EntityKind.STUMP) {
+            if (vert == 0 || world.isOccupied(newPos) && Functions.getOccupancyCell(world, newPos).kind != EntityKind.STUMP) {
                 newPos = position;
             }
         }
@@ -222,9 +222,9 @@ public final class Entity {
 
     public boolean transformTree(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
-            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, Functions.getImageList(imageStore, Functions.STUMP_KEY));
+            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
     
-            Functions.removeEntity(world, scheduler, this);
+            world.removeEntity(scheduler, this);
     
             world.addEntity(stump);
     
@@ -236,17 +236,17 @@ public final class Entity {
 
     public boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
-            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, Functions.getImageList(imageStore, Functions.STUMP_KEY));
+            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
     
-            Functions.removeEntity(world, scheduler, this);
+            world.removeEntity(scheduler, this);
     
             world.addEntity(stump);
     
             return true;
         } else if (health >= healthLimit) {
-            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(Functions.TREE_ACTION_MAX, Functions.TREE_ACTION_MIN), Functions.getNumFromRange(Functions.TREE_ANIMATION_MAX, Functions.TREE_ANIMATION_MIN), Functions.getIntFromRange(Functions.TREE_HEALTH_MAX, Functions.TREE_HEALTH_MIN), Functions.getImageList(imageStore, Functions.TREE_KEY));
+            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(Functions.TREE_ACTION_MAX, Functions.TREE_ACTION_MIN), Functions.getNumFromRange(Functions.TREE_ANIMATION_MAX, Functions.TREE_ANIMATION_MIN), Functions.getIntFromRange(Functions.TREE_HEALTH_MAX, Functions.TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
     
-            Functions.removeEntity(world, scheduler, this);
+            world.removeEntity(scheduler, this);
     
             world.addEntity(tree);
             tree.scheduleActions(scheduler, world, imageStore);

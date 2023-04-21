@@ -30,4 +30,33 @@ public final class EventScheduler {
         pending.add(event);
         pendingEvents.put(entity, pending);
     }
+
+    public void unscheduleAllEvents(Entity entity) {
+        List<Event> pending = pendingEvents.remove(entity);
+    
+        if (pending != null) {
+            for (Event event : pending) {
+                eventQueue.remove(event);
+            }
+        }
+    }
+
+    public void updateOnTime(double time) {
+        double stopTime = currentTime + time;
+        while (!eventQueue.isEmpty() && eventQueue.peek().time <= stopTime) {
+            Event next = eventQueue.poll();
+            removePendingEvent(next);
+            currentTime = next.time;
+            next.action.executeAction(this);
+        }
+        currentTime = stopTime;
+    }
+
+    public void removePendingEvent(Event event) {
+        List<Event> pending = pendingEvents.get(event.entity);
+    
+        if (pending != null) {
+            pending.remove(event);
+        }
+    }
 }

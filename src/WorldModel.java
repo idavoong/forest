@@ -44,4 +44,23 @@ public final class WorldModel {
             entities.add(entity);
         }
     }
+
+    public void removeEntity(EventScheduler scheduler, Entity entity) {
+        scheduler.unscheduleAllEvents(entity);
+        Functions.removeEntityAt(this, entity.position);
+    }
+
+    public void tryAddEntity(Entity entity) {
+        if (isOccupied(entity.position)) {
+            // arguably the wrong type of exception, but we are not
+            // defining our own exceptions yet
+            throw new IllegalArgumentException("position occupied");
+        }
+    
+        addEntity(entity);
+    }
+
+    public boolean isOccupied(Point pos) {
+        return withinBounds(pos) && Functions.getOccupancyCell(this, pos) != null;
+    }
 }
