@@ -66,78 +66,6 @@ public final class Functions {
     public static final int TREE_HEALTH_MAX = 3;
     public static final int TREE_HEALTH_MIN = 1;
 
-    public static double getAnimationPeriod(Entity entity) {
-        switch (entity.kind) {
-            case DUDE_FULL:
-            case DUDE_NOT_FULL:
-            case OBSTACLE:
-            case FAIRY:
-            case SAPLING:
-            case TREE:
-                return entity.animationPeriod;
-            default:
-                throw new UnsupportedOperationException(String.format("getAnimationPeriod not supported for %s", entity.kind));
-        }
-    }
-
-    public static void nextImage(Entity entity) {
-        entity.imageIndex = entity.imageIndex + 1;
-    }
-
-    public static void executeAnimationAction(Action action, EventScheduler scheduler) {
-        nextImage(action.entity);
-
-        if (action.repeatCount != 1) {
-            scheduleEvent(scheduler, action.entity, createAnimationAction(action.entity, Math.max(action.repeatCount - 1, 0)), getAnimationPeriod(action.entity));
-        }
-    }
-
-    public static void executeActivityAction(Action action, EventScheduler scheduler) {
-        switch (action.entity.kind) {
-            case SAPLING:
-                action.entity.executeSaplingActivity(action.world, action.imageStore, scheduler);
-                break;
-            case TREE:
-                action.entity.executeTreeActivity(action.world, action.imageStore, scheduler);
-                break;
-            case FAIRY:
-                action.entity.executeFairyActivity(action.world, action.imageStore, scheduler);
-                break;
-            case DUDE_NOT_FULL:
-                action.entity.executeDudeNotFullActivity(action.world, action.imageStore, scheduler);
-                break;
-            case DUDE_FULL:
-                action.entity.executeDudeFullActivity(action.world, action.imageStore, scheduler);
-                break;
-            default:
-                throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", action.entity.kind));
-        }
-    }
-
-    public static boolean transformPlant(Entity entity, WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (entity.kind == EntityKind.TREE) {
-            return transformTree(entity, world, scheduler, imageStore);
-        } else if (entity.kind == EntityKind.SAPLING) {
-            return transformSapling(entity, world, scheduler, imageStore);
-        } else {
-            throw new UnsupportedOperationException(String.format("transformPlant not supported for %s", entity));
-        }
-    }
-
-    public static boolean transformTree(Entity entity, WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (entity.health <= 0) {
-            Entity stump = createStump(STUMP_KEY + "_" + entity.id, entity.position, getImageList(imageStore, STUMP_KEY));
-
-            removeEntity(world, scheduler, entity);
-
-            world.addEntity(stump);
-
-            return true;
-        }
-
-        return false;
-    }
-
     public static boolean transformSapling(Entity entity, WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (entity.health <= 0) {
             Entity stump = createStump(STUMP_KEY + "_" + entity.id, entity.position, getImageList(imageStore, STUMP_KEY));
@@ -216,20 +144,6 @@ public final class Functions {
         Random rand = new Random();
         return min + rand.nextDouble() * (max - min);
     }
-
-    public static void scheduleEvent(EventScheduler scheduler, Entity entity, Action action, double afterPeriod) {
-        double time = scheduler.currentTime + afterPeriod;
-
-        Event event = new Event(action, time, entity);
-
-        scheduler.eventQueue.add(event);
-
-        // update list of pending events for the given entity
-        List<Event> pending = scheduler.pendingEvents.getOrDefault(entity, new LinkedList<>());
-        pending.add(event);
-        scheduler.pendingEvents.put(entity, pending);
-    }
-
 
     public static void unscheduleAllEvents(EventScheduler scheduler, Entity entity) {
         List<Event> pending = scheduler.pendingEvents.remove(entity);

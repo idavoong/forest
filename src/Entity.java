@@ -47,16 +47,16 @@ public final class Entity {
 
     public void executeSaplingActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         health++;
-        if (!Functions.transformPlant(this, world, scheduler, imageStore)) {
-            Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+        if (!transformPlant(world, scheduler, imageStore)) {
+            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
     public void executeTreeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
     
-        if (!Functions.transformPlant(this, world, scheduler, imageStore)) {
+        if (!transformPlant(world, scheduler, imageStore)) {
     
-            Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
@@ -75,14 +75,14 @@ public final class Entity {
             }
         }
     
-        Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+        scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
     }
 
     public void executeDudeNotFullActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = Functions.findNearest(world, position, new ArrayList<>(Arrays.asList(EntityKind.TREE, EntityKind.SAPLING)));
     
         if (target.isEmpty() || !Functions.moveToNotFull(this, world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
-            Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
@@ -92,7 +92,7 @@ public final class Entity {
         if (fullTarget.isPresent() && Functions.moveToFull(this, world, fullTarget.get(), scheduler)) {
             transformFull(world, scheduler, imageStore);
         } else {
-            Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
@@ -156,32 +156,32 @@ public final class Entity {
     public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
         switch (kind) {
             case DUDE_FULL:
-                Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             case DUDE_NOT_FULL:
-                Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             case OBSTACLE:
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             case FAIRY:
-                Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             case SAPLING:
-                Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             case TREE:
-                Functions.scheduleEvent(scheduler, this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-                Functions.scheduleEvent(scheduler, this, Functions.createAnimationAction(this, 0), Functions.getAnimationPeriod(this));
+                scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+                scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
                 break;
     
             default:
@@ -190,5 +190,70 @@ public final class Entity {
 
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
+    }
+
+    public double getAnimationPeriod() {
+        switch (kind) {
+            case DUDE_FULL:
+            case DUDE_NOT_FULL:
+            case OBSTACLE:
+            case FAIRY:
+            case SAPLING:
+            case TREE:
+                return animationPeriod;
+            default:
+                throw new UnsupportedOperationException(String.format("getAnimationPeriod not supported for %s", kind));
+        }
+    }
+
+    public void nextImage() {
+        imageIndex = imageIndex + 1;
+    }
+
+    public boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        if (kind == EntityKind.TREE) {
+            return transformTree(world, scheduler, imageStore);
+        } else if (kind == EntityKind.SAPLING) {
+            return transformSapling(world, scheduler, imageStore);
+        } else {
+            throw new UnsupportedOperationException(String.format("transformPlant not supported for %s", this));
+        }
+    }
+
+    public boolean transformTree(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        if (health <= 0) {
+            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, Functions.getImageList(imageStore, Functions.STUMP_KEY));
+    
+            Functions.removeEntity(world, scheduler, this);
+    
+            world.addEntity(stump);
+    
+            return true;
+        }
+    
+        return false;
+    }
+
+    public boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        if (health <= 0) {
+            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, Functions.getImageList(imageStore, Functions.STUMP_KEY));
+    
+            Functions.removeEntity(world, scheduler, this);
+    
+            world.addEntity(stump);
+    
+            return true;
+        } else if (health >= healthLimit) {
+            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(Functions.TREE_ACTION_MAX, Functions.TREE_ACTION_MIN), Functions.getNumFromRange(Functions.TREE_ANIMATION_MAX, Functions.TREE_ANIMATION_MIN), Functions.getIntFromRange(Functions.TREE_HEALTH_MAX, Functions.TREE_HEALTH_MIN), Functions.getImageList(imageStore, Functions.TREE_KEY));
+    
+            Functions.removeEntity(world, scheduler, this);
+    
+            world.addEntity(tree);
+            tree.scheduleActions(scheduler, world, imageStore);
+    
+            return true;
+        }
+    
+        return false;
     }
 }
