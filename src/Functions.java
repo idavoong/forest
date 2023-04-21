@@ -66,29 +66,6 @@ public final class Functions {
     public static final int TREE_HEALTH_MAX = 3;
     public static final int TREE_HEALTH_MIN = 1;
 
-    public static boolean transformSapling(Entity entity, WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (entity.health <= 0) {
-            Entity stump = createStump(STUMP_KEY + "_" + entity.id, entity.position, getImageList(imageStore, STUMP_KEY));
-
-            removeEntity(world, scheduler, entity);
-
-            world.addEntity(stump);
-
-            return true;
-        } else if (entity.health >= entity.healthLimit) {
-            Entity tree = createTree(TREE_KEY + "_" + entity.id, entity.position, getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), getImageList(imageStore, TREE_KEY));
-
-            removeEntity(world, scheduler, entity);
-
-            world.addEntity(tree);
-            tree.scheduleActions(scheduler, world, imageStore);
-
-            return true;
-        }
-
-        return false;
-    }
-
     public static boolean moveToFairy(Entity fairy, WorldModel world, Entity target, EventScheduler scheduler) {
         if (adjacent(fairy.position, target.position)) {
             removeEntity(world, scheduler, target);
