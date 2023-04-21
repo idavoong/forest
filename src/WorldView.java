@@ -1,4 +1,7 @@
+import java.util.Optional;
+
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public final class WorldView {
     public PApplet screen;
@@ -20,5 +23,33 @@ public final class WorldView {
         int newRow = Functions.clamp(viewport.row + rowDelta, 0, world.numRows - viewport.numRows);
     
         viewport.shift(newCol, newRow);
+    }
+
+    public void drawViewport() {
+        drawBackground();
+        drawEntities();
+    }
+
+    public void drawBackground() {
+        for (int row = 0; row < viewport.numRows; row++) {
+            for (int col = 0; col < viewport.numCols; col++) {
+                Point worldPoint = Functions.viewportToWorld(viewport, col, row);
+                Optional<PImage> image = Functions.getBackgroundImage(world, worldPoint);
+                if (image.isPresent()) {
+                    screen.image(image.get(), col * tileWidth, row * tileHeight);
+                }
+            }
+        }
+    }
+
+    public void drawEntities() {
+        for (Entity entity : world.entities) {
+            Point pos = entity.position;
+    
+            if (Functions.contains(viewport, pos)) {
+                Point viewPoint = Functions.worldToViewport(viewport, pos.x, pos.y);
+                screen.image(entity.getCurrentImage(), viewPoint.x * tileWidth, viewPoint.y * tileHeight);
+            }
+        }
     }
 }

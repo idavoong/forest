@@ -66,52 +66,6 @@ public final class Functions {
     public static final int TREE_HEALTH_MAX = 3;
     public static final int TREE_HEALTH_MIN = 1;
 
-    public static boolean moveToFairy(Entity fairy, WorldModel world, Entity target, EventScheduler scheduler) {
-        if (adjacent(fairy.position, target.position)) {
-            world.removeEntity(scheduler, target);
-            return true;
-        } else {
-            Point nextPos = fairy.nextPositionFairy(world, target.position);
-
-            if (!fairy.position.equals(nextPos)) {
-                moveEntity(world, scheduler, fairy, nextPos);
-            }
-            return false;
-        }
-    }
-
-    public static boolean moveToNotFull(Entity dude, WorldModel world, Entity target, EventScheduler scheduler) {
-        if (adjacent(dude.position, target.position)) {
-            dude.resourceCount += 1;
-            target.health--;
-            return true;
-        } else {
-            Point nextPos = dude.nextPositionDude(world, target.position);
-
-            if (!dude.position.equals(nextPos)) {
-                moveEntity(world, scheduler, dude, nextPos);
-            }
-            return false;
-        }
-    }
-
-    public static boolean moveToFull(Entity dude, WorldModel world, Entity target, EventScheduler scheduler) {
-        if (adjacent(dude.position, target.position)) {
-            return true;
-        } else {
-            Point nextPos = dude.nextPositionDude(world, target.position);
-
-            if (!dude.position.equals(nextPos)) {
-                moveEntity(world, scheduler, dude, nextPos);
-            }
-            return false;
-        }
-    }
-
-    public static boolean adjacent(Point p1, Point p2) {
-        return (p1.x == p2.x && Math.abs(p1.y - p2.y) == 1) || (p1.y == p2.y && Math.abs(p1.x - p2.x) == 1);
-    }
-
     public static int getIntFromRange(int max, int min) {
         Random rand = new Random();
         return min + rand.nextInt(max-min);
@@ -190,10 +144,10 @@ public final class Functions {
             return Optional.empty();
         } else {
             Entity nearest = entities.get(0);
-            int nearestDistance = distanceSquared(nearest.position, pos);
+            int nearestDistance = Point.distanceSquared(nearest.position, pos);
 
             for (Entity other : entities) {
-                int otherDistance = distanceSquared(other.position, pos);
+                int otherDistance = Point.distanceSquared(other.position, pos);
 
                 if (otherDistance < nearestDistance) {
                     nearest = other;
@@ -203,13 +157,6 @@ public final class Functions {
 
             return Optional.of(nearest);
         }
-    }
-
-    public static int distanceSquared(Point p1, Point p2) {
-        int deltaX = p1.x - p2.x;
-        int deltaY = p1.y - p2.y;
-
-        return deltaX * deltaX + deltaY * deltaY;
     }
 
     public static Optional<Entity> findNearest(WorldModel world, Point pos, List<EntityKind> kinds) {
@@ -225,20 +172,9 @@ public final class Functions {
         return nearestEntity(ofType, pos);
     }
 
-    public static void moveEntity(WorldModel world, EventScheduler scheduler, Entity entity, Point pos) {
-        Point oldPos = entity.position;
-        if (world.withinBounds(pos) && !pos.equals(oldPos)) {
-            setOccupancyCell(world, oldPos, null);
-            Optional<Entity> occupant = getOccupant(world, pos);
-            occupant.ifPresent(target -> world.removeEntity(scheduler, target));
-            setOccupancyCell(world, pos, entity);
-            entity.position = pos;
-        }
-    }
-
     public static void removeEntityAt(WorldModel world, Point pos) {
-        if (world.withinBounds(pos) && getOccupancyCell(world, pos) != null) {
-            Entity entity = getOccupancyCell(world, pos);
+        if (world.withinBounds(pos) && world.getOccupancyCell(pos) != null) {
+            Entity entity = world.getOccupancyCell(pos);
 
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
@@ -251,14 +187,10 @@ public final class Functions {
 
     public static Optional<Entity> getOccupant(WorldModel world, Point pos) {
         if (world.isOccupied(pos)) {
-            return Optional.of(getOccupancyCell(world, pos));
+            return Optional.of(world.getOccupancyCell(pos));
         } else {
             return Optional.empty();
         }
-    }
-
-    public static Entity getOccupancyCell(WorldModel world, Point pos) {
-        return world.occupancy[pos.y][pos.x];
     }
 
     public static void setOccupancyCell(WorldModel world, Point pos, Entity entity) {
@@ -308,18 +240,6 @@ public final class Functions {
         return new Entity(EntityKind.DUDE_FULL, id, position, images, resourceLimit, 0, actionPeriod, animationPeriod, 0, 0);
     }
 
-    public static void load(WorldModel world, Scanner saveFile, ImageStore imageStore, Background defaultBackground){
-        parseSaveFile(world, saveFile, imageStore, defaultBackground);
-        if(world.background == null){
-            world.background = new Background[world.numRows][world.numCols];
-            for (Background[] row : world.background)
-                Arrays.fill(row, defaultBackground);
-        }
-        if(world.occupancy == null){
-            world.occupancy = new Entity[world.numRows][world.numCols];
-            world.entities = new HashSet<>();
-        }
-    }
     public static void parseSaveFile(WorldModel world, Scanner saveFile, ImageStore imageStore, Background defaultBackground){
         String lastHeader = "";
         int headerLine = 0;
@@ -464,33 +384,6 @@ public final class Functions {
         }
     }
 
-    public static void drawBackground(WorldView view) {
-        for (int row = 0; row < view.viewport.numRows; row++) {
-            for (int col = 0; col < view.viewport.numCols; col++) {
-                Point worldPoint = viewportToWorld(view.viewport, col, row);
-                Optional<PImage> image = getBackgroundImage(view.world, worldPoint);
-                if (image.isPresent()) {
-                    view.screen.image(image.get(), col * view.tileWidth, row * view.tileHeight);
-                }
-            }
-        }
-    }
-
-    public static void drawEntities(WorldView view) {
-        for (Entity entity : view.world.entities) {
-            Point pos = entity.position;
-
-            if (contains(view.viewport, pos)) {
-                Point viewPoint = worldToViewport(view.viewport, pos.x, pos.y);
-                view.screen.image(entity.getCurrentImage(), viewPoint.x * view.tileWidth, viewPoint.y * view.tileHeight);
-            }
-        }
-    }
-
-    public static void drawViewport(WorldView view) {
-        drawBackground(view);
-        drawEntities(view);
-    }
     public static void loadImages(Scanner in, ImageStore imageStore, PApplet screen) {
         int lineNumber = 0;
         while (in.hasNextLine()) {

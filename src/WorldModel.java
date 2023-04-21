@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -61,6 +65,34 @@ public final class WorldModel {
     }
 
     public boolean isOccupied(Point pos) {
-        return withinBounds(pos) && Functions.getOccupancyCell(this, pos) != null;
+        return withinBounds(pos) && getOccupancyCell(pos) != null;
+    }
+
+    public void moveEntity(EventScheduler scheduler, Entity entity, Point pos) {
+        Point oldPos = entity.position;
+        if (withinBounds(pos) && !pos.equals(oldPos)) {
+            Functions.setOccupancyCell(this, oldPos, null);
+            Optional<Entity> occupant = Functions.getOccupant(this, pos);
+            occupant.ifPresent(target -> removeEntity(scheduler, target));
+            Functions.setOccupancyCell(this, pos, entity);
+            entity.position = pos;
+        }
+    }
+
+    public void load(Scanner saveFile, ImageStore imageStore, Background defaultBackground){
+        Functions.parseSaveFile(this, saveFile, imageStore, defaultBackground);
+        if(background == null){
+            background = new Background[numRows][numCols];
+            for (Background[] row : background)
+                Arrays.fill(row, defaultBackground);
+        }
+        if(occupancy == null){
+            occupancy = new Entity[numRows][numCols];
+            entities = new HashSet<>();
+        }
+    }
+
+    public Entity getOccupancyCell(Point pos) {
+        return occupancy[pos.y][pos.x];
     }
 }

@@ -57,7 +57,7 @@ public final class VirtualWorld extends PApplet {
         double appTime = (System.currentTimeMillis() - startTimeMillis) * 0.001;
         double frameTime = (appTime - scheduler.currentTime)/timeScale;
         this.update(frameTime);
-        Functions.drawViewport(view);
+        view.drawViewport();
     }
 
     public void update(double frameTime){
@@ -129,10 +129,10 @@ public final class VirtualWorld extends PApplet {
         this.world = new WorldModel();
         try {
             Scanner in = new Scanner(new File(file));
-            Functions.load(world, in, imageStore, createDefaultBackground(imageStore));
+            world.load(in, imageStore, createDefaultBackground(imageStore));
         } catch (FileNotFoundException e) {
             Scanner in = new Scanner(file);
-            Functions.load(world, in, imageStore, createDefaultBackground(imageStore));
+            world.load(in, imageStore, createDefaultBackground(imageStore));
         }
     }
 

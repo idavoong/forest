@@ -24,4 +24,15 @@ public final class Point {
         result = result * 31 + y;
         return result;
     }
+
+    public static int distanceSquared(Point p1, Point p2) {
+        int deltaX = p1.x - p2.x;
+        int deltaY = p1.y - p2.y;
+    
+        return deltaX * deltaX + deltaY * deltaY;
+    }
+
+    public static boolean adjacent(Point p1, Point p2) {
+        return (p1.x == p2.x && Math.abs(p1.y - p2.y) == 1) || (p1.y == p2.y && Math.abs(p1.x - p2.x) == 1);
+    }
 }
