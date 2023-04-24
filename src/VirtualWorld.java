@@ -85,7 +85,7 @@ public final class VirtualWorld extends PApplet {
     }
 
     private Point mouseToPoint() {
-        return view.viewport.viewportToWorld(mouseX / TILE_WIDTH, mouseY / TILE_HEIGHT);
+        return view.getViewport().viewportToWorld(mouseX / TILE_WIDTH, mouseY / TILE_HEIGHT);
     }
 
     public void keyPressed() {

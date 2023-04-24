@@ -116,7 +116,7 @@ public final class Entity {
         }
     }
 
-    public boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (resourceCount >= resourceLimit) {
             Entity dude = Functions.createDudeFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
     
@@ -132,7 +132,7 @@ public final class Entity {
         return false;
     }
 
-    public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         Entity dude = Functions.createDudeNotFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
     
         world.removeEntity(scheduler, this);
@@ -141,7 +141,7 @@ public final class Entity {
         dude.scheduleActions(scheduler, world, imageStore);
     }
 
-    public Point nextPositionFairy(WorldModel world, Point destPos) {
+    private Point nextPositionFairy(WorldModel world, Point destPos) {
         int horiz = Integer.signum(destPos.x - position.x);
         Point newPos = new Point(position.x + horiz, position.y);
     
@@ -157,7 +157,7 @@ public final class Entity {
         return newPos;
     }
 
-    public Point nextPositionDude(WorldModel world, Point destPos) {
+    private Point nextPositionDude(WorldModel world, Point destPos) {
         int horiz = Integer.signum(destPos.x - position.x);
         Point newPos = new Point(position.x + horiz, position.y);
     
@@ -230,7 +230,7 @@ public final class Entity {
         imageIndex = imageIndex + 1;
     }
 
-    public boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (kind == EntityKind.TREE) {
             return transformTree(world, scheduler, imageStore);
         } else if (kind == EntityKind.SAPLING) {
@@ -240,7 +240,7 @@ public final class Entity {
         }
     }
 
-    public boolean transformTree(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transformTree(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
             Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
     
@@ -254,7 +254,7 @@ public final class Entity {
         return false;
     }
 
-    public boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
             Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
     
@@ -277,7 +277,7 @@ public final class Entity {
         return false;
     }
 
-	public boolean moveToFairy(WorldModel world, Entity target, EventScheduler scheduler) {
+	private boolean moveToFairy(WorldModel world, Entity target, EventScheduler scheduler) {
 	    if (Point.adjacent(position, target.position)) {
 	        world.removeEntity(scheduler, target);
 	        return true;
@@ -291,7 +291,7 @@ public final class Entity {
 	    }
 	}
 
-    public boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
+    private boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
         if (Point.adjacent(position, target.position)) {
             resourceCount += 1;
             target.health--;
@@ -306,7 +306,7 @@ public final class Entity {
         }
     }
 
-    public boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler) {
+    private boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler) {
         if (Point.adjacent(position, target.position)) {
             return true;
         } else {

@@ -88,7 +88,7 @@ public final class WorldModel {
         return list;
     }
 
-    public boolean withinBounds(Point pos) {
+    private boolean withinBounds(Point pos) {
         return pos.y >= 0 && pos.y < numRows && pos.x >= 0 && pos.x < numCols;
     }
 
@@ -150,7 +150,7 @@ public final class WorldModel {
         return occupancy[pos.y][pos.x];
     }
 
-    public void removeEntityAt(Point pos) {
+    private void removeEntityAt(Point pos) {
         if (withinBounds(pos) && getOccupancyCell(pos) != null) {
             Entity entity = getOccupancyCell(pos);
     

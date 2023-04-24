@@ -1,15 +1,21 @@
 import java.util.Optional;
 
+import javax.swing.text.View;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public final class WorldView {
-    public PApplet screen;
-    public WorldModel world;
-    public int tileWidth;
-    public int tileHeight;
-    public Viewport viewport;
+    private PApplet screen;
+    private WorldModel world;
+    private int tileWidth;
+    private int tileHeight;
+    private Viewport viewport;
 
+    public Viewport getViewport() {
+        return viewport;
+    }
+    
     public WorldView(int numRows, int numCols, PApplet screen, WorldModel world, int tileWidth, int tileHeight) {
         this.screen = screen;
         this.world = world;
@@ -30,7 +36,7 @@ public final class WorldView {
         drawEntities();
     }
 
-    public void drawBackground() {
+    private void drawBackground() {
         for (int row = 0; row < viewport.getNumRows(); row++) {
             for (int col = 0; col < viewport.getNumCols(); col++) {
                 Point worldPoint = viewport.viewportToWorld(col, row);
@@ -42,7 +48,7 @@ public final class WorldView {
         }
     }
 
-    public void drawEntities() {
+    private void drawEntities() {
         for (Entity entity : world.getEntities()) {
             Point pos = entity.getPosition();
     
