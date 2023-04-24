@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -44,14 +45,14 @@ public final class WorldModel {
     */
     public void addEntity(Entity entity) {
         if (withinBounds(entity.position)) {
-            Functions.setOccupancyCell(this, entity.position, entity);
+            setOccupancyCell(entity.position, entity);
             entities.add(entity);
         }
     }
 
     public void removeEntity(EventScheduler scheduler, Entity entity) {
         scheduler.unscheduleAllEvents(entity);
-        Functions.removeEntityAt(this, entity.position);
+        removeEntityAt(entity.position);
     }
 
     public void tryAddEntity(Entity entity) {
@@ -71,10 +72,10 @@ public final class WorldModel {
     public void moveEntity(EventScheduler scheduler, Entity entity, Point pos) {
         Point oldPos = entity.position;
         if (withinBounds(pos) && !pos.equals(oldPos)) {
-            Functions.setOccupancyCell(this, oldPos, null);
-            Optional<Entity> occupant = Functions.getOccupant(this, pos);
+            setOccupancyCell(oldPos, null);
+            Optional<Entity> occupant = getOccupant(pos);
             occupant.ifPresent(target -> removeEntity(scheduler, target));
-            Functions.setOccupancyCell(this, pos, entity);
+            setOccupancyCell(pos, entity);
             entity.position = pos;
         }
     }
@@ -94,5 +95,50 @@ public final class WorldModel {
 
     public Entity getOccupancyCell(Point pos) {
         return occupancy[pos.y][pos.x];
+    }
+
+    public void removeEntityAt(Point pos) {
+        if (withinBounds(pos) && getOccupancyCell(pos) != null) {
+            Entity entity = getOccupancyCell(pos);
+    
+            /* This moves the entity just outside of the grid for
+             * debugging purposes. */
+            entity.position = new Point(-1, -1);
+            entities.remove(entity);
+            setOccupancyCell(pos, null);
+        }
+    }
+
+    public void setOccupancyCell(Point pos, Entity entity) {
+        occupancy[pos.y][pos.x] = entity;
+    }
+
+    public Background getBackgroundCell(Point pos) {
+        return background[pos.y][pos.x];
+    }
+
+    public void setBackgroundCell(Point pos, Background background) {
+        this.background[pos.y][pos.x] = background;
+    }
+
+    public Optional<Entity> getOccupant(Point pos) {
+        if (isOccupied(pos)) {
+            return Optional.of(getOccupancyCell(pos));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<Entity> findNearest(Point pos, List<EntityKind> kinds) {
+        List<Entity> ofType = new LinkedList<>();
+        for (EntityKind kind : kinds) {
+            for (Entity entity : entities) {
+                if (entity.kind == kind) {
+                    ofType.add(entity);
+                }
+            }
+        }
+    
+        return Functions.nearestEntity(ofType, pos);
     }
 }

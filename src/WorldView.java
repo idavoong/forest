@@ -33,7 +33,7 @@ public final class WorldView {
     public void drawBackground() {
         for (int row = 0; row < viewport.numRows; row++) {
             for (int col = 0; col < viewport.numCols; col++) {
-                Point worldPoint = Functions.viewportToWorld(viewport, col, row);
+                Point worldPoint = viewport.viewportToWorld(col, row);
                 Optional<PImage> image = Functions.getBackgroundImage(world, worldPoint);
                 if (image.isPresent()) {
                     screen.image(image.get(), col * tileWidth, row * tileHeight);
@@ -46,8 +46,8 @@ public final class WorldView {
         for (Entity entity : world.entities) {
             Point pos = entity.position;
     
-            if (Functions.contains(viewport, pos)) {
-                Point viewPoint = Functions.worldToViewport(viewport, pos.x, pos.y);
+            if (viewport.contains(pos)) {
+                Point viewPoint = viewport.worldToViewport(pos.x, pos.y);
                 screen.image(entity.getCurrentImage(), viewPoint.x * tileWidth, viewPoint.y * tileHeight);
             }
         }

@@ -159,44 +159,6 @@ public final class Functions {
         }
     }
 
-    public static Optional<Entity> findNearest(WorldModel world, Point pos, List<EntityKind> kinds) {
-        List<Entity> ofType = new LinkedList<>();
-        for (EntityKind kind : kinds) {
-            for (Entity entity : world.entities) {
-                if (entity.kind == kind) {
-                    ofType.add(entity);
-                }
-            }
-        }
-
-        return nearestEntity(ofType, pos);
-    }
-
-    public static void removeEntityAt(WorldModel world, Point pos) {
-        if (world.withinBounds(pos) && world.getOccupancyCell(pos) != null) {
-            Entity entity = world.getOccupancyCell(pos);
-
-            /* This moves the entity just outside of the grid for
-             * debugging purposes. */
-            entity.position = new Point(-1, -1);
-            world.entities.remove(entity);
-            setOccupancyCell(world, pos, null);
-        }
-    }
-
-
-    public static Optional<Entity> getOccupant(WorldModel world, Point pos) {
-        if (world.isOccupied(pos)) {
-            return Optional.of(world.getOccupancyCell(pos));
-        } else {
-            return Optional.empty();
-        }
-    }
-
-    public static void setOccupancyCell(WorldModel world, Point pos, Entity entity) {
-        world.occupancy[pos.y][pos.x] = entity;
-    }
-
     public static Action createAnimationAction(Entity entity, int repeatCount) {
         return new Action(ActionKind.ANIMATION, entity, null, null, repeatCount);
     }
@@ -302,32 +264,6 @@ public final class Functions {
         }
     }
 
-    // public static PImage getCurrentImage(Object object) {
-    //     if (object instanceof Background background) {
-    //         return background.images.get(background.imageIndex);
-    //     } else if (object instanceof Entity entity) {
-    //         return entity.images.get(entity.imageIndex % entity.images.size());
-    //     } else {
-    //         throw new UnsupportedOperationException(String.format("getCurrentImage not supported for %s", object));
-    //     }
-    // }
-
-    public static Background getBackgroundCell(WorldModel world, Point pos) {
-        return world.background[pos.y][pos.x];
-    }
-
-    public static void setBackgroundCell(WorldModel world, Point pos, Background background) {
-        world.background[pos.y][pos.x] = background;
-    }
-
-    public static Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + viewport.col, row + viewport.row);
-    }
-
-    public static Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - viewport.col, row - viewport.row);
-    }
-
     public static int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
     }
@@ -372,13 +308,9 @@ public final class Functions {
         img.updatePixels();
     }
 
-    public static boolean contains(Viewport viewport, Point p) {
-        return p.y >= viewport.row && p.y < viewport.row + viewport.numRows && p.x >= viewport.col && p.x < viewport.col + viewport.numCols;
-    }
-
     public static Optional<PImage> getBackgroundImage(WorldModel world, Point pos) {
         if (world.withinBounds(pos)) {
-            return Optional.of(getBackgroundCell(world, pos).getCurrentImage());
+            return Optional.of(world.getBackgroundCell(pos).getCurrentImage());
         } else {
             return Optional.empty();
         }

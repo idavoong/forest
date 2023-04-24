@@ -70,7 +70,7 @@ public final class VirtualWorld extends PApplet {
         Point pressed = mouseToPoint();
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
 
-        Optional<Entity> entityOptional = Functions.getOccupant(world, pressed);
+        Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent()) {
             Entity entity = entityOptional.get();
             System.out.println(entity.id + ": " + entity.kind + " : " + entity.health);
@@ -85,7 +85,7 @@ public final class VirtualWorld extends PApplet {
     }
 
     private Point mouseToPoint() {
-        return Functions.viewportToWorld(view.viewport, mouseX / TILE_WIDTH, mouseY / TILE_HEIGHT);
+        return view.viewport.viewportToWorld(mouseX / TILE_WIDTH, mouseY / TILE_HEIGHT);
     }
 
     public void keyPressed() {
