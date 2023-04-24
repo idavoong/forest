@@ -15,14 +15,65 @@ import processing.core.PImage;
  * location in the world, and the entities that populate the world.
  */
 public final class WorldModel {
-    public int numRows;
-    public int numCols;
-    public Background[][] background;
-    public Entity[][] occupancy;
-    public Set<Entity> entities;
+    private int numRows;
+    private int numCols;
+    private Background[][] background;
+    private Entity[][] occupancy;
+    private Set<Entity> entities;
 
     public WorldModel() {
 
+    }
+
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
+    public Entity[][] getOccupancy() {
+        return occupancy;
+    }
+
+    public Set<Entity> getEntities() {
+        return entities;
+    }
+
+    public void setNumRows(int numRows){
+        this.numRows = numRows;
+    }
+
+    public void setNumCols(int numCols){
+        this.numCols = numCols;
+    }
+
+    public void setBackground(Background[][] background) {
+        this.background = background;
+    }
+
+    public void setBackground(Background background, int row, int col) {
+        this.background[row][col] = background;
+    }
+
+    public void setOccupancy(Entity[][] occupancy) {
+        this.occupancy = occupancy;
+    }
+
+    public void setEntities(Set<Entity> entities) {
+        this.entities = entities;
+    }
+
+
+
+
+    public void setOccupancyCell(Point pos, Entity entity) {
+        occupancy[pos.y][pos.x] = entity;
+    }
+
+    public Background getBackgroundCell(Point pos) {
+        return background[pos.y][pos.x];
     }
 
     /**
@@ -109,14 +160,6 @@ public final class WorldModel {
             entities.remove(entity);
             setOccupancyCell(pos, null);
         }
-    }
-
-    public void setOccupancyCell(Point pos, Entity entity) {
-        occupancy[pos.y][pos.x] = entity;
-    }
-
-    public Background getBackgroundCell(Point pos) {
-        return background[pos.y][pos.x];
     }
 
     public void setBackgroundCell(Point pos, Background background) {

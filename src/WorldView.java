@@ -19,8 +19,8 @@ public final class WorldView {
     }
 
     public void shiftView(int colDelta, int rowDelta) {
-        int newCol = Functions.clamp(viewport.getCol() + colDelta, 0, world.numCols - viewport.getNumCols());
-        int newRow = Functions.clamp(viewport.getRow() + rowDelta, 0, world.numRows - viewport.getNumRows());
+        int newCol = Functions.clamp(viewport.getCol() + colDelta, 0, world.getNumCols() - viewport.getNumCols());
+        int newRow = Functions.clamp(viewport.getRow() + rowDelta, 0, world.getNumRows() - viewport.getNumRows());
     
         viewport.shift(newCol, newRow);
     }
@@ -43,7 +43,7 @@ public final class WorldView {
     }
 
     public void drawEntities() {
-        for (Entity entity : world.entities) {
+        for (Entity entity : world.getEntities()) {
             Point pos = entity.getPosition();
     
             if (viewport.contains(pos)) {

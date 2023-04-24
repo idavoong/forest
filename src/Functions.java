@@ -213,16 +213,16 @@ public final class Functions {
                 headerLine = lineCounter;
                 lastHeader = line;
                 switch (line){
-                    case "Backgrounds:" -> world.background = new Background[world.numRows][world.numCols];
+                    case "Backgrounds:" -> world.setBackground(new Background[world.getNumRows()][world.getNumCols()]);
                     case "Entities:" -> {
-                        world.occupancy = new Entity[world.numRows][world.numCols];
-                        world.entities = new HashSet<>();
+                        world.setOccupancy(new Entity[world.getNumRows()][world.getNumCols()]);
+                        world.setEntities(new HashSet<>());
                     }
                 }
             }else{
                 switch (lastHeader){
-                    case "Rows:" -> world.numRows = Integer.parseInt(line);
-                    case "Cols:" -> world.numCols = Integer.parseInt(line);
+                    case "Rows:" -> world.setNumRows(Integer.parseInt(line));
+                    case "Cols:" -> world.setNumCols(Integer.parseInt(line)); 
                     case "Backgrounds:" -> Functions.parseBackgroundRow(world, line, lineCounter-headerLine-1, imageStore);
                     case "Entities:" -> Functions.parseEntity(world, line, imageStore);
                 }
@@ -231,10 +231,11 @@ public final class Functions {
     }
     public static void parseBackgroundRow(WorldModel world, String line, int row, ImageStore imageStore) {
         String[] cells = line.split(" ");
-        if(row < world.numRows){
-            int rows = Math.min(cells.length, world.numCols);
+        if(row < world.getNumRows()){
+            int rows = Math.min(cells.length, world.getNumCols());
             for (int col = 0; col < rows; col++){
-                world.background[row][col] = new Background(cells[col], imageStore.getImageList(cells[col]));
+                //world.background[row][col] = new Background(cells[col], imageStore.getImageList(cells[col]));
+                world.setBackground(new Background(cells[col], imageStore.getImageList(cells[col])), row, col);
             }
         }
     }
