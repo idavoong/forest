@@ -37,7 +37,7 @@ public final class Action {
     }
 
     private void executeActivityAction(EventScheduler scheduler) {
-        switch (entity.kind) {
+        switch (entity.getKind()) {
             case SAPLING:
                 entity.executeSaplingActivity(world, imageStore, scheduler);
                 break;
@@ -54,7 +54,7 @@ public final class Action {
                 entity.executeDudeFullActivity(world, imageStore, scheduler);
                 break;
             default:
-                throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", entity.kind));
+                throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", entity.getKind()));
         }
     }
 }

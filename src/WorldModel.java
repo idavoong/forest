@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 
+import processing.core.PImage;
+
 /**
  * Represents the 2D World in which this simulation is running.
  * Keeps track of the size of the world, the background image for each
@@ -44,19 +46,19 @@ public final class WorldModel {
        intended destination cell.
     */
     public void addEntity(Entity entity) {
-        if (withinBounds(entity.position)) {
-            setOccupancyCell(entity.position, entity);
+        if (withinBounds(entity.getPosition())) {
+            setOccupancyCell(entity.getPosition(), entity);
             entities.add(entity);
         }
     }
 
     public void removeEntity(EventScheduler scheduler, Entity entity) {
         scheduler.unscheduleAllEvents(entity);
-        removeEntityAt(entity.position);
+        removeEntityAt(entity.getPosition());
     }
 
     public void tryAddEntity(Entity entity) {
-        if (isOccupied(entity.position)) {
+        if (isOccupied(entity.getPosition())) {
             // arguably the wrong type of exception, but we are not
             // defining our own exceptions yet
             throw new IllegalArgumentException("position occupied");
@@ -70,13 +72,13 @@ public final class WorldModel {
     }
 
     public void moveEntity(EventScheduler scheduler, Entity entity, Point pos) {
-        Point oldPos = entity.position;
+        Point oldPos = entity.getPosition();
         if (withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(oldPos, null);
             Optional<Entity> occupant = getOccupant(pos);
             occupant.ifPresent(target -> removeEntity(scheduler, target));
             setOccupancyCell(pos, entity);
-            entity.position = pos;
+            entity.setPosition(pos);
         }
     }
 
@@ -103,7 +105,7 @@ public final class WorldModel {
     
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
-            entity.position = new Point(-1, -1);
+            entity.setPosition(new Point(-1, -1));
             entities.remove(entity);
             setOccupancyCell(pos, null);
         }
@@ -133,12 +135,20 @@ public final class WorldModel {
         List<Entity> ofType = new LinkedList<>();
         for (EntityKind kind : kinds) {
             for (Entity entity : entities) {
-                if (entity.kind == kind) {
+                if (entity.getKind() == kind) {
                     ofType.add(entity);
                 }
             }
         }
     
         return Functions.nearestEntity(ofType, pos);
+    }
+
+    public Optional<PImage> getBackgroundImage(Point pos) {
+        if (withinBounds(pos)) {
+            return Optional.of(getBackgroundCell(pos).getCurrentImage());
+        } else {
+            return Optional.empty();
+        }
     }
 }

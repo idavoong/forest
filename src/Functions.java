@@ -144,10 +144,10 @@ public final class Functions {
             return Optional.empty();
         } else {
             Entity nearest = entities.get(0);
-            int nearestDistance = Point.distanceSquared(nearest.position, pos);
+            int nearestDistance = Point.distanceSquared(nearest.getPosition(), pos);
 
             for (Entity other : entities) {
-                int otherDistance = Point.distanceSquared(other.position, pos);
+                int otherDistance = Point.distanceSquared(other.getPosition(), pos);
 
                 if (otherDistance < nearestDistance) {
                     nearest = other;
@@ -306,14 +306,6 @@ public final class Functions {
             }
         }
         img.updatePixels();
-    }
-
-    public static Optional<PImage> getBackgroundImage(WorldModel world, Point pos) {
-        if (world.withinBounds(pos)) {
-            return Optional.of(world.getBackgroundCell(pos).getCurrentImage());
-        } else {
-            return Optional.empty();
-        }
     }
 
     public static void loadImages(Scanner in, ImageStore imageStore, PApplet screen) {

@@ -11,17 +11,17 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class Entity {
-    public EntityKind kind;
-    public String id;
-    public Point position;
-    public List<PImage> images;
-    public int imageIndex;
-    public int resourceLimit;
-    public int resourceCount;
-    public double actionPeriod;
-    public double animationPeriod;
-    public int health;
-    public int healthLimit;
+    private EntityKind kind;
+    private String id;
+    private Point position;
+    private List<PImage> images;
+    private int imageIndex;
+    private int resourceLimit;
+    private int resourceCount;
+    private double actionPeriod;
+    private double animationPeriod;
+    private int health;
+    private int healthLimit;
 
     public Entity(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
         this.kind = kind;
@@ -35,6 +35,26 @@ public final class Entity {
         this.animationPeriod = animationPeriod;
         this.health = health;
         this.healthLimit = healthLimit;
+    }
+
+    public EntityKind getKind() {
+        return kind;    
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     /**

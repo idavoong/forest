@@ -34,7 +34,7 @@ public final class WorldView {
         for (int row = 0; row < viewport.numRows; row++) {
             for (int col = 0; col < viewport.numCols; col++) {
                 Point worldPoint = viewport.viewportToWorld(col, row);
-                Optional<PImage> image = Functions.getBackgroundImage(world, worldPoint);
+                Optional<PImage> image = world.getBackgroundImage(worldPoint);
                 if (image.isPresent()) {
                     screen.image(image.get(), col * tileWidth, row * tileHeight);
                 }
@@ -44,7 +44,7 @@ public final class WorldView {
 
     public void drawEntities() {
         for (Entity entity : world.entities) {
-            Point pos = entity.position;
+            Point pos = entity.getPosition();
     
             if (viewport.contains(pos)) {
                 Point viewPoint = viewport.worldToViewport(pos.x, pos.y);
