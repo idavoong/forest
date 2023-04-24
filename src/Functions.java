@@ -312,7 +312,7 @@ public final class Functions {
         int lineNumber = 0;
         while (in.hasNextLine()) {
             try {
-                processImageLine(imageStore.images, in.nextLine(), screen);
+                processImageLine(imageStore.getImages(), in.nextLine(), screen);
             } catch (NumberFormatException e) {
                 System.out.printf("Image format error on line %d\n", lineNumber);
             }

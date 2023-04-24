@@ -8,14 +8,18 @@ import java.util.PriorityQueue;
  * Keeps track of events that have been scheduled.
  */
 public final class EventScheduler {
-    public PriorityQueue<Event> eventQueue;
-    public Map<Entity, List<Event>> pendingEvents;
-    public double currentTime;
+    private PriorityQueue<Event> eventQueue;
+    private Map<Entity, List<Event>> pendingEvents;
+    private double currentTime;
 
     public EventScheduler() {
         this.eventQueue = new PriorityQueue<>(new EventComparator());
         this.pendingEvents = new HashMap<>();
         this.currentTime = 0;
+    }
+
+    public double getCurrentTime() {
+        return currentTime;
     }
 
     public void scheduleEvent(Entity entity, Action action, double afterPeriod) {
@@ -43,17 +47,17 @@ public final class EventScheduler {
 
     public void updateOnTime(double time) {
         double stopTime = currentTime + time;
-        while (!eventQueue.isEmpty() && eventQueue.peek().time <= stopTime) {
+        while (!eventQueue.isEmpty() && eventQueue.peek().getTime() <= stopTime) {
             Event next = eventQueue.poll();
             removePendingEvent(next);
-            currentTime = next.time;
-            next.action.executeAction(this);
+            currentTime = next.getTime();
+            next.getAction().executeAction(this);
         }
         currentTime = stopTime;
     }
 
     public void removePendingEvent(Event event) {
-        List<Event> pending = pendingEvents.get(event.entity);
+        List<Event> pending = pendingEvents.get(event.geteEntity());
     
         if (pending != null) {
             pending.remove(event);

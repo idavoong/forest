@@ -55,7 +55,7 @@ public final class VirtualWorld extends PApplet {
 
     public void draw() {
         double appTime = (System.currentTimeMillis() - startTimeMillis) * 0.001;
-        double frameTime = (appTime - scheduler.currentTime)/timeScale;
+        double frameTime = (appTime - scheduler.getCurrentTime())/timeScale;
         this.update(frameTime);
         view.drawViewport();
     }
