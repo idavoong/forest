@@ -21,7 +21,7 @@ public final class Event {
         return time;
     }
 
-    public Entity geteEntity() {
+    public Entity getEntity() {
         return entity;
     }
 }
