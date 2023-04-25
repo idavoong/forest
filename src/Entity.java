@@ -11,6 +11,13 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class Entity {
+    private static final double TREE_ANIMATION_MAX = 0.600;
+    private static final double TREE_ANIMATION_MIN = 0.050;
+    private static final double TREE_ACTION_MAX = 1.400;
+    private static final double TREE_ACTION_MIN = 1.000;
+    private static final int TREE_HEALTH_MAX = 3;
+    private static final int TREE_HEALTH_MIN = 1;
+
     private EntityKind kind;
     private String id;
     private Point position;
@@ -264,7 +271,7 @@ public final class Entity {
     
             return true;
         } else if (health >= healthLimit) {
-            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(Functions.TREE_ACTION_MAX, Functions.TREE_ACTION_MIN), Functions.getNumFromRange(Functions.TREE_ANIMATION_MAX, Functions.TREE_ANIMATION_MIN), Functions.getIntFromRange(Functions.TREE_HEALTH_MAX, Functions.TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
+            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), Functions.getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), Functions.getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
     
             world.removeEntity(scheduler, this);
     

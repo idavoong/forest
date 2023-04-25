@@ -9,62 +9,52 @@ import processing.core.PApplet;
  * by refactoring this codebase to follow an OOP style.
  */
 public final class Functions {
-    public static final Random rand = new Random();
-
-    public static final int COLOR_MASK = 0xffffff;
-    public static final int KEYED_IMAGE_MIN = 5;
+    private static final int COLOR_MASK = 0xffffff;
+    private static final int KEYED_IMAGE_MIN = 5;
     private static final int KEYED_RED_IDX = 2;
     private static final int KEYED_GREEN_IDX = 3;
     private static final int KEYED_BLUE_IDX = 4;
 
-    public static final List<String> PATH_KEYS = new ArrayList<>(Arrays.asList("bridge", "dirt", "dirt_horiz", "dirt_vert_left", "dirt_vert_right", "dirt_bot_left_corner", "dirt_bot_right_up", "dirt_vert_left_bot"));
+    private static final double SAPLING_ACTION_ANIMATION_PERIOD = 1.000; // have to be in sync since grows and gains health at same time
+    private static final int SAPLING_HEALTH_LIMIT = 5;
 
-    public static final double SAPLING_ACTION_ANIMATION_PERIOD = 1.000; // have to be in sync since grows and gains health at same time
-    public static final int SAPLING_HEALTH_LIMIT = 5;
-
-    public static final int PROPERTY_KEY = 0;
-    public static final int PROPERTY_ID = 1;
-    public static final int PROPERTY_COL = 2;
-    public static final int PROPERTY_ROW = 3;
-    public static final int ENTITY_NUM_PROPERTIES = 4;
+    private static final int PROPERTY_KEY = 0;
+    private static final int PROPERTY_ID = 1;
+    private static final int PROPERTY_COL = 2;
+    private static final int PROPERTY_ROW = 3;
+    private static final int ENTITY_NUM_PROPERTIES = 4;
 
     public static final String STUMP_KEY = "stump";
-    public static final int STUMP_NUM_PROPERTIES = 0;
+    private static final int STUMP_NUM_PROPERTIES = 0;
 
     public static final String SAPLING_KEY = "sapling";
-    public static final int SAPLING_HEALTH = 0;
-    public static final int SAPLING_NUM_PROPERTIES = 1;
+    private static final int SAPLING_HEALTH = 0;
+    private static final int SAPLING_NUM_PROPERTIES = 1;
 
-    public static final String OBSTACLE_KEY = "obstacle";
-    public static final int OBSTACLE_ANIMATION_PERIOD = 0;
-    public static final int OBSTACLE_NUM_PROPERTIES = 1;
+    private static final String OBSTACLE_KEY = "obstacle";
+    private static final int OBSTACLE_ANIMATION_PERIOD = 0;
+    private static final int OBSTACLE_NUM_PROPERTIES = 1;
 
-    public static final String DUDE_KEY = "dude";
-    public static final int DUDE_ACTION_PERIOD = 0;
-    public static final int DUDE_ANIMATION_PERIOD = 1;
-    public static final int DUDE_LIMIT = 2;
-    public static final int DUDE_NUM_PROPERTIES = 3;
+    private static final String DUDE_KEY = "dude";
+    private static final int DUDE_ACTION_PERIOD = 0;
+    private static final int DUDE_ANIMATION_PERIOD = 1;
+    private static final int DUDE_LIMIT = 2;
+    private static final int DUDE_NUM_PROPERTIES = 3;
 
-    public static final String HOUSE_KEY = "house";
-    public static final int HOUSE_NUM_PROPERTIES = 0;
+    private static final String HOUSE_KEY = "house";
+    private static final int HOUSE_NUM_PROPERTIES = 0;
 
-    public static final String FAIRY_KEY = "fairy";
-    public static final int FAIRY_ANIMATION_PERIOD = 0;
-    public static final int FAIRY_ACTION_PERIOD = 1;
-    public static final int FAIRY_NUM_PROPERTIES = 2;
+    private static final String FAIRY_KEY = "fairy";
+    private static final int FAIRY_ANIMATION_PERIOD = 0;
+    private static final int FAIRY_ACTION_PERIOD = 1;
+    private static final int FAIRY_NUM_PROPERTIES = 2;
 
     public static final String TREE_KEY = "tree";
-    public static final int TREE_ANIMATION_PERIOD = 0;
-    public static final int TREE_ACTION_PERIOD = 1;
-    public static final int TREE_HEALTH = 2;
-    public static final int TREE_NUM_PROPERTIES = 3;
+    private static final int TREE_ANIMATION_PERIOD = 0;
+    private static final int TREE_ACTION_PERIOD = 1;
+    private static final int TREE_HEALTH = 2;
+    private static final int TREE_NUM_PROPERTIES = 3;
 
-    public static final double TREE_ANIMATION_MAX = 0.600;
-    public static final double TREE_ANIMATION_MIN = 0.050;
-    public static final double TREE_ACTION_MAX = 1.400;
-    public static final double TREE_ACTION_MIN = 1.000;
-    public static final int TREE_HEALTH_MAX = 3;
-    public static final int TREE_HEALTH_MIN = 1;
 
     public static int getIntFromRange(int max, int min) {
         Random rand = new Random();
@@ -76,7 +66,7 @@ public final class Functions {
         return min + rand.nextDouble() * (max - min);
     }
 
-    public static void parseSapling(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseSapling(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == SAPLING_NUM_PROPERTIES) {
             int health = Integer.parseInt(properties[SAPLING_HEALTH]);
             Entity entity = createSapling(id, pt, imageStore.getImageList(SAPLING_KEY), health);
@@ -86,7 +76,7 @@ public final class Functions {
         }
     }
 
-    public static void parseDude(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseDude(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == DUDE_NUM_PROPERTIES) {
             Entity entity = createDudeNotFull(id, pt, Double.parseDouble(properties[DUDE_ACTION_PERIOD]), Double.parseDouble(properties[DUDE_ANIMATION_PERIOD]), Integer.parseInt(properties[DUDE_LIMIT]), imageStore.getImageList(DUDE_KEY));
             world.tryAddEntity(entity);
@@ -95,7 +85,7 @@ public final class Functions {
         }
     }
 
-    public static void parseFairy(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseFairy(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == FAIRY_NUM_PROPERTIES) {
             Entity entity = createFairy(id, pt, Double.parseDouble(properties[FAIRY_ACTION_PERIOD]), Double.parseDouble(properties[FAIRY_ANIMATION_PERIOD]), imageStore.getImageList(FAIRY_KEY));
             world.tryAddEntity(entity);
@@ -104,7 +94,7 @@ public final class Functions {
         }
     }
 
-    public static void parseTree(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseTree(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == TREE_NUM_PROPERTIES) {
             Entity entity = createTree(id, pt, Double.parseDouble(properties[TREE_ACTION_PERIOD]), Double.parseDouble(properties[TREE_ANIMATION_PERIOD]), Integer.parseInt(properties[TREE_HEALTH]), imageStore.getImageList(TREE_KEY));
             world.tryAddEntity(entity);
@@ -113,7 +103,7 @@ public final class Functions {
         }
     }
 
-    public static void parseObstacle(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseObstacle(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == OBSTACLE_NUM_PROPERTIES) {
             Entity entity = createObstacle(id, pt, Double.parseDouble(properties[OBSTACLE_ANIMATION_PERIOD]), imageStore.getImageList(OBSTACLE_KEY));
             world.tryAddEntity(entity);
@@ -122,7 +112,7 @@ public final class Functions {
         }
     }
 
-    public static void parseHouse(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseHouse(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == HOUSE_NUM_PROPERTIES) {
             Entity entity = createHouse(id, pt, imageStore.getImageList(HOUSE_KEY));
             world.tryAddEntity(entity);
@@ -130,7 +120,7 @@ public final class Functions {
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", HOUSE_KEY, HOUSE_NUM_PROPERTIES));
         }
     }
-    public static void parseStump(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
+    private static void parseStump(WorldModel world, String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == STUMP_NUM_PROPERTIES) {
             Entity entity = createStump(id, pt, imageStore.getImageList(STUMP_KEY));
             world.tryAddEntity(entity);
@@ -229,7 +219,7 @@ public final class Functions {
             }
         }
     }
-    public static void parseBackgroundRow(WorldModel world, String line, int row, ImageStore imageStore) {
+    private static void parseBackgroundRow(WorldModel world, String line, int row, ImageStore imageStore) {
         String[] cells = line.split(" ");
         if(row < world.getNumRows()){
             int rows = Math.min(cells.length, world.getNumCols());
@@ -240,7 +230,7 @@ public final class Functions {
         }
     }
 
-    public static void parseEntity(WorldModel world, String line, ImageStore imageStore) {
+    private static void parseEntity(WorldModel world, String line, ImageStore imageStore) {
         String[] properties = line.split(" ", Functions.ENTITY_NUM_PROPERTIES + 1);
         if (properties.length >= Functions.ENTITY_NUM_PROPERTIES) {
             String key = properties[PROPERTY_KEY];
@@ -269,7 +259,7 @@ public final class Functions {
         return Math.min(high, Math.max(value, low));
     }
 
-    public static void processImageLine(Map<String, List<PImage>> images, String line, PApplet screen) {
+    private static void processImageLine(Map<String, List<PImage>> images, String line, PApplet screen) {
         String[] attrs = line.split("\\s");
         if (attrs.length >= 2) {
             String key = attrs[0];
@@ -296,7 +286,7 @@ public final class Functions {
       Called with color for which alpha should be set and alpha value.
       setAlpha(img, color(255, 255, 255), 0));
     */
-    public static void setAlpha(PImage img, int maskColor, int alpha) {
+    private static void setAlpha(PImage img, int maskColor, int alpha) {
         int alphaValue = alpha << 24;
         int nonAlpha = maskColor & COLOR_MASK;
         img.format = PApplet.ARGB;
