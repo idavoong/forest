@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class DudeNotFull implements Entity, EntityActions {
+public final class DudeNotFull implements Entity, EntityAnimation, EntityActivity {
     private EntityKind kind;
     private String id;
     private Point position;
@@ -65,7 +65,7 @@ public final class DudeNotFull implements Entity, EntityActions {
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
-    public void executeDudeNotFullActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(EntityKind.TREE, EntityKind.SAPLING)));
 
         if (target.isEmpty() || !moveToNotFull(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
@@ -81,7 +81,7 @@ public final class DudeNotFull implements Entity, EntityActions {
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(dude);
-            ((EntityActions)dude).scheduleActions(scheduler, world, imageStore);
+            ((EntityAnimation)dude).scheduleActions(scheduler, world, imageStore);
 
             return true;
         }

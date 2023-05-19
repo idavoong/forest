@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Sapling implements Entity, EntityActions, Plant {
+public final class Sapling implements Entity, EntityAnimation, EntityActivity, Plant {
     private static final double TREE_ANIMATION_MAX = 0.600;
     private static final double TREE_ANIMATION_MIN = 0.050;
     private static final double TREE_ACTION_MAX = 1.400;
@@ -75,7 +75,7 @@ public final class Sapling implements Entity, EntityActions, Plant {
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
-    public void executeSaplingActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         health++;
         if (!transformPlant(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
@@ -118,7 +118,7 @@ public final class Sapling implements Entity, EntityActions, Plant {
             world.removeEntity(scheduler, this);
 
             world.addEntity(tree);
-            ((EntityActions)tree).scheduleActions(scheduler, world, imageStore);
+            ((EntityAnimation)tree).scheduleActions(scheduler, world, imageStore);
 
             return true;
         }

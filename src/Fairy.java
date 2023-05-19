@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Fairy implements Entity, EntityActions {
+public final class Fairy implements Entity, EntityAnimation, EntityActivity {
     private EntityKind kind;
     private String id;
     private Point position;
@@ -65,7 +65,7 @@ public final class Fairy implements Entity, EntityActions {
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
-    public void executeFairyActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> fairyTarget = world.findNearest(position, new ArrayList<>(List.of(EntityKind.STUMP)));
 
         if (fairyTarget.isPresent()) {
@@ -76,7 +76,7 @@ public final class Fairy implements Entity, EntityActions {
                 Entity sapling = Functions.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
 
                 world.addEntity(sapling);
-                ((EntityActions)sapling).scheduleActions(scheduler, world, imageStore);
+                ((EntityAnimation)sapling).scheduleActions(scheduler, world, imageStore);
             }
         }
 

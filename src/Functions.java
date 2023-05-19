@@ -149,11 +149,11 @@ public final class Functions {
         }
     }
 
-    public static Action createAnimationAction(EntityActions entity, int repeatCount) {
+    public static Action createAnimationAction(EntityAnimation entity, int repeatCount) {
         return new Animation(entity, repeatCount);
     }
 
-    public static Action createActivityAction(Entity entity, WorldModel world, ImageStore imageStore) {
+    public static Action createActivityAction(EntityActivity entity, WorldModel world, ImageStore imageStore) {
         return new Activity(entity, world, imageStore);
     }
 

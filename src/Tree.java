@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Tree implements Entity, EntityActions, Plant {
+public final class Tree implements Entity, EntityAnimation, EntityActivity, Plant {
     private EntityKind kind;
     private String id;
     private Point position;
@@ -69,7 +69,7 @@ public final class Tree implements Entity, EntityActions, Plant {
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
-    public void executeTreeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 
         if (!transformPlant(world, scheduler, imageStore)) {
 
