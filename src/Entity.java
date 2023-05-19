@@ -17,8 +17,6 @@ public interface Entity {
 
     Point getPosition();
 
-    int getHealth();
-
     void setPosition(Point position);
 
     String log();

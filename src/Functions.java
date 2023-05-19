@@ -158,11 +158,11 @@ public final class Functions {
     }
 
     public static Entity createHouse(String id, Point position, List<PImage> images) {
-        return new House(EntityKind.HOUSE, id, position, images, 0, 0, 0, 0, 0, 0);
+        return new House(EntityKind.HOUSE, id, position, images);
     }
 
     public static Entity createObstacle(String id, Point position, double animationPeriod, List<PImage> images) {
-        return new Obstacle(EntityKind.OBSTACLE, id, position, images, 0, 0, 0, animationPeriod, 0, 0);
+        return new Obstacle(EntityKind.OBSTACLE, id, position, images, animationPeriod);
     }
 
     public static Entity createTree(String id, Point position, double actionPeriod, double animationPeriod, int health, List<PImage> images) {
@@ -170,7 +170,7 @@ public final class Functions {
     }
 
     public static Entity createStump(String id, Point position, List<PImage> images) {
-        return new Stump(EntityKind.STUMP, id, position, images, 0, 0, 0, 0, 0, 0);
+        return new Stump(EntityKind.STUMP, id, position, images);
     }
 
     // health starts at 0 and builds up until ready to convert to Tree
@@ -179,17 +179,17 @@ public final class Functions {
     }
 
     public static Entity createFairy(String id, Point position, double actionPeriod, double animationPeriod, List<PImage> images) {
-        return new Fairy(EntityKind.FAIRY, id, position, images, 0, 0, actionPeriod, animationPeriod, 0, 0);
+        return new Fairy(EntityKind.FAIRY, id, position, images, actionPeriod, animationPeriod);
     }
 
     // need resource count, though it always starts at 0
     public static Entity createDudeNotFull(String id, Point position, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
-        return new DudeNotFull(EntityKind.DUDE_NOT_FULL, id, position, images, resourceLimit, 0, actionPeriod, animationPeriod, 0, 0);
+        return new DudeNotFull(EntityKind.DUDE_NOT_FULL, id, position, images, resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
     // don't technically need resource count ... full
     public static Entity createDudeFull(String id, Point position, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
-        return new DudeFull(EntityKind.DUDE_FULL, id, position, images, resourceLimit, 0, actionPeriod, animationPeriod, 0, 0);
+        return new DudeFull(EntityKind.DUDE_FULL, id, position, images, resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
     public static void parseSaveFile(WorldModel world, Scanner saveFile, ImageStore imageStore, Background defaultBackground){

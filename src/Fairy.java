@@ -16,25 +16,17 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity {
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
     private double actionPeriod;
     private double animationPeriod;
-    private int health;
-    private int healthLimit;
 
-    public Fairy(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
+    public Fairy(EntityKind kind, String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         this.kind = kind;
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
-        this.health = health;
-        this.healthLimit = healthLimit;
     }
 
     public EntityKind getKind() {
@@ -47,10 +39,6 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity {
 
     public Point getPosition() {
         return position;
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public void setPosition(Point position) {

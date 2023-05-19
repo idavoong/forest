@@ -20,10 +20,8 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
     private int resourceCount;
     private double actionPeriod;
     private double animationPeriod;
-    private int health;
-    private int healthLimit;
 
-    public DudeFull(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
+    public DudeFull(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
         this.kind = kind;
         this.id = id;
         this.position = position;
@@ -33,8 +31,6 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
         this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
-        this.health = health;
-        this.healthLimit = healthLimit;
     }
 
     public EntityKind getKind() {
@@ -47,10 +43,6 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
 
     public Point getPosition() {
         return position;
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public void setPosition(Point position) {
