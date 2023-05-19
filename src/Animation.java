@@ -1,8 +1,8 @@
 public final class Animation implements Action{
-    private Entity entity;
+    private EntityActions entity;
     private int repeatCount;
 
-    public Animation(Entity entity, int repeatCount) {
+    public Animation(EntityActions entity, int repeatCount) {
         this.entity = entity;
         this.repeatCount = repeatCount;
     }

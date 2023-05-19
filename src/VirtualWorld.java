@@ -73,14 +73,16 @@ public final class VirtualWorld extends PApplet {
         Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent()) {
             Entity entity = entityOptional.get();
-            System.out.println(entity.getId() + ": " + entity.getKind() + " : " + entity.getHealth());
+            //System.out.println(entity.getId() + ": " + entity.getKind() + " : " + entity.getHealth());
         }
 
     }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         for (Entity entity : world.getEntities()) {
-            entity.scheduleActions(scheduler, world, imageStore);
+            if (entity instanceof EntityActions) {
+                ((EntityActions)entity).scheduleActions(scheduler, world, imageStore);
+            }
         }
     }
 
