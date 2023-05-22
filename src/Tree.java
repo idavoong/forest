@@ -79,14 +79,10 @@ public final class Tree implements Entity, EntityAnimation, EntityActivity, Plan
     private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
             Entity stump = Factory.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
-
             world.removeEntity(scheduler, this);
-
             world.addEntity(stump);
-
             return true;
         }
-
         return false;
     }
 }

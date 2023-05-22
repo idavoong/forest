@@ -24,7 +24,7 @@ public class Factory {
 
     // health starts at 0 and builds up until ready to convert to Tree
     public static Entity createSapling(String id, Point position, List<PImage> images, int health) {
-        return new Sapling(id, position, images, 0, 0, SAPLING_ACTION_ANIMATION_PERIOD, SAPLING_ACTION_ANIMATION_PERIOD, 0, SAPLING_HEALTH_LIMIT);
+        return new Sapling(id, position, images, SAPLING_ACTION_ANIMATION_PERIOD, SAPLING_ACTION_ANIMATION_PERIOD, 0, SAPLING_HEALTH_LIMIT);
     }
 
     public static Entity createFairy(String id, Point position, double actionPeriod, double animationPeriod, List<PImage> images) {

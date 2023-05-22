@@ -25,20 +25,16 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
     private double actionPeriod;
     private double animationPeriod;
     private int health;
     private int healthLimit;
 
-    public Sapling(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
+    public Sapling(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health, int healthLimit) {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
         this.health = health;
@@ -91,23 +87,16 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
     private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
             Entity stump = Factory.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
-
             world.removeEntity(scheduler, this);
-
             world.addEntity(stump);
-
             return true;
         } else if (health >= healthLimit) {
             Entity tree = Factory.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), Functions.getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), Functions.getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
-
             world.removeEntity(scheduler, this);
-
             world.addEntity(tree);
             ((EntityAnimation)tree).scheduleActions(scheduler, world, imageStore);
-
             return true;
         }
-
         return false;
     }
 }

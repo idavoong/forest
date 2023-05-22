@@ -134,7 +134,7 @@ public final class WorldModel {
     }
 
     public void load(Scanner saveFile, ImageStore imageStore, Background defaultBackground){
-        Functions.parseSaveFile(this, saveFile, imageStore, defaultBackground);
+        Parse.parseSaveFile(this, saveFile, imageStore, defaultBackground);
         if(background == null){
             background = new Background[numRows][numCols];
             for (Background[] row : background)
