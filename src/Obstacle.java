@@ -11,15 +11,13 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class Obstacle implements Entity, EntityAnimation {
-    private EntityKind kind;
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
     private double animationPeriod;
 
-    public Obstacle(EntityKind kind, String id, Point position, List<PImage> images, double animationPeriod) {
-        this.kind = kind;
+    public Obstacle(String id, Point position, List<PImage> images, double animationPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
@@ -27,9 +25,6 @@ public final class Obstacle implements Entity, EntityAnimation {
         this.animationPeriod = animationPeriod;
     }
 
-    public EntityKind getKind() {
-        return kind;
-    }
 
     public String getId() {
         return id;

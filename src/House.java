@@ -11,22 +11,16 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class House implements Entity {
-    private EntityKind kind;
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
 
-    public House(EntityKind kind, String id, Point position, List<PImage> images) {
-        this.kind = kind;
+    public House(String id, Point position, List<PImage> images) {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-    }
-
-    public EntityKind getKind() {
-        return kind;
     }
 
     public String getId() {

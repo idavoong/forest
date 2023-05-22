@@ -11,8 +11,6 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public interface Entity {
-    EntityKind getKind();
-
     String getId();
 
     Point getPosition();

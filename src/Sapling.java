@@ -21,7 +21,6 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
     public void setHealth() {
         health--;
     }
-    private EntityKind kind;
     private String id;
     private Point position;
     private List<PImage> images;
@@ -33,8 +32,7 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
     private int health;
     private int healthLimit;
 
-    public Sapling(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
-        this.kind = kind;
+    public Sapling(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
         this.id = id;
         this.position = position;
         this.images = images;
@@ -45,10 +43,6 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
         this.animationPeriod = animationPeriod;
         this.health = health;
         this.healthLimit = healthLimit;
-    }
-
-    public EntityKind getKind() {
-        return kind;
     }
 
     public String getId() {

@@ -11,7 +11,6 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class Tree implements Entity, EntityAnimation, EntityActivity, Plant {
-    private EntityKind kind;
     private String id;
     private Point position;
     private List<PImage> images;
@@ -23,8 +22,7 @@ public final class Tree implements Entity, EntityAnimation, EntityActivity, Plan
     private int health;
     private int healthLimit;
 
-    public Tree(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
-        this.kind = kind;
+    public Tree(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod, int health, int healthLimit) {
         this.id = id;
         this.position = position;
         this.images = images;
@@ -39,10 +37,6 @@ public final class Tree implements Entity, EntityAnimation, EntityActivity, Plan
 
     public void setHealth() {
         health--;
-    }
-
-    public EntityKind getKind() {
-        return kind;
     }
 
     public String getId() {

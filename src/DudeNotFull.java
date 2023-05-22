@@ -11,7 +11,6 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class DudeNotFull implements Entity, EntityAnimation, EntityActivity {
-    private EntityKind kind;
     private String id;
     private Point position;
     private List<PImage> images;
@@ -21,8 +20,7 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
     private double actionPeriod;
     private double animationPeriod;
 
-    public DudeNotFull(EntityKind kind, String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
-        this.kind = kind;
+    public DudeNotFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
@@ -31,10 +29,6 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
-    }
-
-    public EntityKind getKind() {
-        return kind;
     }
 
     public String getId() {
@@ -58,7 +52,7 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
     }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(EntityKind.TREE, EntityKind.SAPLING)));
+        Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
 
         if (target.isEmpty() || !moveToNotFull(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
@@ -85,11 +79,11 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         int horiz = Integer.signum(destPos.x - position.x);
         Point newPos = new Point(position.x + horiz, position.y);
 
-        if (horiz == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getKind() != EntityKind.STUMP) {
+        if (horiz == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
             int vert = Integer.signum(destPos.y - position.y);
             newPos = new Point(position.x, position.y + vert);
 
-            if (vert == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getKind() != EntityKind.STUMP) {
+            if (vert == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
                 newPos = position;
             }
         }
