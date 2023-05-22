@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
+public final class DudeFull implements Entity, EntityAnimation, EntityActivity, MovableEntity {
     private String id;
     private Point position;
     private List<PImage> images;
@@ -86,32 +86,11 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
         ((EntityAnimation)dude).scheduleActions(scheduler, world, imageStore);
     }
 
-    private Point nextPositionDude(WorldModel world, Point destPos) {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
-
-        if (horiz == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != Stump.class) {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
-
     private boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler) {
         if (Point.adjacent(position, target.getPosition())) {
             return true;
         } else {
-            Point nextPos = nextPositionDude(world, target.getPosition());
-
-            if (!position.equals(nextPos)) {
-                world.moveEntity(scheduler, this, nextPos);
-            }
-            return false;
+            return moveTo(world, target, scheduler);
         }
     }
 }
