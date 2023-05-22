@@ -62,7 +62,7 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity {
     }
 
     private void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity dude = Functions.createDudeNotFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
+        Entity dude = Factory.createDudeNotFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
 
         world.removeEntity(scheduler, this);
 

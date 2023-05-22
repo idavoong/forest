@@ -61,7 +61,7 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
 
     private boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (resourceCount >= resourceLimit) {
-            Entity dude = Functions.createDudeFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
+            Entity dude = Factory.createDudeFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
 
             world.removeEntity(scheduler, this);
             scheduler.unscheduleAllEvents(this);

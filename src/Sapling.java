@@ -99,7 +99,7 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
 
     private boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
-            Entity stump = Functions.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
+            Entity stump = Factory.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
 
             world.removeEntity(scheduler, this);
 
@@ -107,7 +107,7 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
 
             return true;
         } else if (health >= healthLimit) {
-            Entity tree = Functions.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), Functions.getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), Functions.getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
+            Entity tree = Factory.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), Functions.getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), Functions.getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
 
             world.removeEntity(scheduler, this);
 

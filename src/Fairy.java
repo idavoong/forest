@@ -55,7 +55,7 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity {
 
             if (moveToFairy(world, fairyTarget.get(), scheduler)) {
 
-                Entity sapling = Functions.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
+                Entity sapling = Factory.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
 
                 world.addEntity(sapling);
                 ((EntityAnimation)sapling).scheduleActions(scheduler, world, imageStore);
