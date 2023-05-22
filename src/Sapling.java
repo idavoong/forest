@@ -10,93 +10,20 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Sapling implements Entity, EntityAnimation, EntityActivity, Plant {
-    private static final double TREE_ANIMATION_MAX = 0.600;
-    private static final double TREE_ANIMATION_MIN = 0.050;
-    private static final double TREE_ACTION_MAX = 1.400;
-    private static final double TREE_ACTION_MIN = 1.000;
-    private static final int TREE_HEALTH_MAX = 3;
-    private static final int TREE_HEALTH_MIN = 1;
-
-    public void setHealth() {
-        health--;
-    }
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private double actionPeriod;
-    private double animationPeriod;
-    private int health;
+public final class Sapling extends Plant implements Entity, EntityAnimation, EntityActivity {
     private int healthLimit;
 
     public Sapling(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health, int healthLimit) {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
-        this.health = health;
+        super(id, position, images, actionPeriod, animationPeriod, health);
         this.healthLimit = healthLimit;
     }
 
-    public String getId() {
-        return id;
+    public int getHealthLimit() {
+        return healthLimit;
     }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
-    public PImage getCurrentImage() {
-        return images.get(imageIndex % images.size());
-    }
-
-    public double getAnimationPeriod() {
-        return animationPeriod;
-    }
-
-    public void nextImage() {
-        imageIndex = imageIndex + 1;
-    }
-
-    public double getActionPeriod() {
-        return actionPeriod;
-    };
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        health++;
-        if (!transformPlant(world, scheduler, imageStore)) {
-            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-        }
-    }
-
-    private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (health <= 0) {
-            Entity stump = Factory.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
-            world.removeEntity(scheduler, this);
-            world.addEntity(stump);
-            return true;
-        } else if (health >= healthLimit) {
-            Entity tree = Factory.createTree(Functions.TREE_KEY + "_" + id, position, Functions.getNumFromRange(TREE_ACTION_MAX, TREE_ACTION_MIN), Functions.getNumFromRange(TREE_ANIMATION_MAX, TREE_ANIMATION_MIN), Functions.getIntFromRange(TREE_HEALTH_MAX, TREE_HEALTH_MIN), imageStore.getImageList(Functions.TREE_KEY));
-            world.removeEntity(scheduler, this);
-            world.addEntity(tree);
-            ((EntityAnimation)tree).scheduleActions(scheduler, world, imageStore);
-            return true;
-        }
-        return false;
+        addHealth();
+        super.executeActivity(world, imageStore, scheduler);
     }
 }

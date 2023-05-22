@@ -110,7 +110,7 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
     private boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
         if (Point.adjacent(position, target.getPosition())) {
             resourceCount += 1;
-            ((Plant)target).setHealth();
+            ((Plant)target).subHealth();
             return true;
         } else {
             Point nextPos = nextPositionDude(world, target.getPosition());
