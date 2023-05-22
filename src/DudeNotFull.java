@@ -51,6 +51,22 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
+    public PImage getCurrentImage() {
+        return images.get(imageIndex % images.size());
+    }
+
+    public double getAnimationPeriod() {
+        return animationPeriod;
+    }
+
+    public void nextImage() {
+        imageIndex = imageIndex + 1;
+    }
+
+    public double getActionPeriod() {
+        return actionPeriod;
+    };
+
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
 
@@ -89,23 +105,6 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         }
 
         return newPos;
-    }
-
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
-        scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-        scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
-    }
-
-    public PImage getCurrentImage() {
-        return images.get(imageIndex % images.size());
-    }
-
-    public double getAnimationPeriod() {
-        return animationPeriod;
-    }
-
-    public void nextImage() {
-        imageIndex = imageIndex + 1;
     }
 
     private boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {

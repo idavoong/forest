@@ -15,7 +15,7 @@ public class Factory {
     }
 
     public static Entity createTree(String id, Point position, double actionPeriod, double animationPeriod, int health, List<PImage> images) {
-        return new Tree(id, position, images, 0, 0, actionPeriod, animationPeriod, health, 0);
+        return new Tree(id, position, images, actionPeriod, animationPeriod, health);
     }
 
     public static Entity createStump(String id, Point position, List<PImage> images) {

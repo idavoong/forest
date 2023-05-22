@@ -53,10 +53,6 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
         return position;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
     public void setPosition(Point position) {
         this.position = position;
     }
@@ -67,18 +63,6 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
     public String log(){
         return this.id.isEmpty() ? null :
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
-    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        health++;
-        if (!transformPlant(world, scheduler, imageStore)) {
-            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-        }
-    }
-
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
-        scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
-        scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
     }
 
     public PImage getCurrentImage() {
@@ -93,11 +77,18 @@ public final class Sapling implements Entity, EntityAnimation, EntityActivity, P
         imageIndex = imageIndex + 1;
     }
 
-    private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        return transformSapling(world, scheduler, imageStore);
+    public double getActionPeriod() {
+        return actionPeriod;
+    };
+
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        health++;
+        if (!transformPlant(world, scheduler, imageStore)) {
+            scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
+        }
     }
 
-    private boolean transformSapling(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transformPlant(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (health <= 0) {
             Entity stump = Factory.createStump(Functions.STUMP_KEY + "_" + id, position, imageStore.getImageList(Functions.STUMP_KEY));
 

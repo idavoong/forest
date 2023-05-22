@@ -25,7 +25,6 @@ public final class Obstacle implements Entity, EntityAnimation {
         this.animationPeriod = animationPeriod;
     }
 
-
     public String getId() {
         return id;
     }
@@ -46,9 +45,6 @@ public final class Obstacle implements Entity, EntityAnimation {
                 String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
     }
 
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
-        scheduler.scheduleEvent(this, Functions.createAnimationAction(this, 0), getAnimationPeriod());
-    }
 
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
@@ -60,5 +56,9 @@ public final class Obstacle implements Entity, EntityAnimation {
 
     public void nextImage() {
         imageIndex = imageIndex + 1;
+    }
+
+    public double getActionPeriod() {
+        return getActionPeriod();
     }
 }
