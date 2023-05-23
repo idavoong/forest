@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class DudeFull extends Dude implements MovableEntity {
+public final class DudeFull extends Dude {
 
     public DudeFull(String id, Point position, List<PImage> images, int resourceLimit, double actionPeriod, double animationPeriod) {
         super(id, position, images, resourceLimit, actionPeriod, animationPeriod);

@@ -2,7 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-abstract class Dude implements Entity, EntityActivity {
+abstract class Dude implements MovableEntity {
     private String id;
     private Point position;
     private List<PImage> images;

@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Fairy implements Entity, MovableEntity {
+public final class Fairy implements MovableEntity {
     private String id;
     private Point position;
     private List<PImage> images;
