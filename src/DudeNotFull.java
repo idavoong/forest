@@ -70,7 +70,7 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
 
-        if (target.isEmpty() || !moveToNotFull(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
+        if (target.isEmpty() || !moveTo(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
@@ -91,13 +91,8 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         return false;
     }
 
-    private boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            resourceCount += 1;
-            ((Plant)target).subHealth();
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        resourceCount += 1;
+        ((Plant)target).subHealth();
     }
 }

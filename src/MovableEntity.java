@@ -23,11 +23,18 @@ public interface MovableEntity extends Entity, EntityAnimation, EntityActivity{
     }
 
     default boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
-        Point nextPos = nextPosition(world, target.getPosition());
+        if (Point.adjacent(getPosition(), target.getPosition())) {
+            moveToHelper(world, target, scheduler);
+            return true;
+        } else {
+            Point nextPos = nextPosition(world, target.getPosition());
 
-        if (!getPosition().equals(nextPos)) {
-            world.moveEntity(scheduler, this, nextPos);
+            if (!getPosition().equals(nextPos)) {
+                world.moveEntity(scheduler, this, nextPos);
+            }
+            return false;
         }
-        return false;
     }
+
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
 }

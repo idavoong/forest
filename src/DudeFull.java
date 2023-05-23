@@ -70,7 +70,7 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> fullTarget = world.findNearest(position, new ArrayList<>(List.of(House.class)));
 
-        if (fullTarget.isPresent() && moveToFull(world, fullTarget.get(), scheduler)) {
+        if (fullTarget.isPresent() && moveTo(world, fullTarget.get(), scheduler)) {
             transformFull(world, scheduler, imageStore);
         } else {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
@@ -86,11 +86,7 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         ((EntityAnimation)dude).scheduleActions(scheduler, world, imageStore);
     }
 
-    private boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+
     }
 }

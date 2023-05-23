@@ -7,33 +7,33 @@ import processing.core.*;
 public final class VirtualWorld extends PApplet {
     private static String[] ARGS;
 
-    public static final int VIEW_WIDTH = 640;
-    public static final int VIEW_HEIGHT = 480;
-    public static final int TILE_WIDTH = 32;
-    public static final int TILE_HEIGHT = 32;
+    private static final int VIEW_WIDTH = 640;
+    private static final int VIEW_HEIGHT = 480;
+    private static final int TILE_WIDTH = 32;
+    private static final int TILE_HEIGHT = 32;
 
-    public static final int VIEW_COLS = VIEW_WIDTH / TILE_WIDTH;
-    public static final int VIEW_ROWS = VIEW_HEIGHT / TILE_HEIGHT;
+    private static final int VIEW_COLS = VIEW_WIDTH / TILE_WIDTH;
+    private static final int VIEW_ROWS = VIEW_HEIGHT / TILE_HEIGHT;
 
-    public static final String IMAGE_LIST_FILE_NAME = "imagelist";
-    public static final String DEFAULT_IMAGE_NAME = "background_default";
-    public static final int DEFAULT_IMAGE_COLOR = 0x808080;
+    private static final String IMAGE_LIST_FILE_NAME = "imagelist";
+    private static final String DEFAULT_IMAGE_NAME = "background_default";
+    private static final int DEFAULT_IMAGE_COLOR = 0x808080;
 
-    public static final String FAST_FLAG = "-fast";
-    public static final String FASTER_FLAG = "-faster";
-    public static final String FASTEST_FLAG = "-fastest";
-    public static final double FAST_SCALE = 0.5;
-    public static final double FASTER_SCALE = 0.25;
-    public static final double FASTEST_SCALE = 0.10;
+    private static final String FAST_FLAG = "-fast";
+    private static final String FASTER_FLAG = "-faster";
+    private static final String FASTEST_FLAG = "-fastest";
+    private static final double FAST_SCALE = 0.5;
+    private static final double FASTER_SCALE = 0.25;
+    private static final double FASTEST_SCALE = 0.10;
 
-    public String loadFile = "world.sav";
-    public long startTimeMillis = 0;
-    public double timeScale = 1.0;
+    private String loadFile = "world.sav";
+    private long startTimeMillis = 0;
+    private double timeScale = 1.0;
 
-    public ImageStore imageStore;
-    public WorldModel world;
-    public WorldView view;
-    public EventScheduler scheduler;
+    private ImageStore imageStore;
+    private WorldModel world;
+    private WorldView view;
+    private EventScheduler scheduler;
 
     public void settings() {
         size(VIEW_WIDTH, VIEW_HEIGHT);

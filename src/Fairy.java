@@ -70,7 +70,7 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         if (fairyTarget.isPresent()) {
             Point tgtPos = fairyTarget.get().getPosition();
 
-            if (moveToFairy(world, fairyTarget.get(), scheduler)) {
+            if (moveTo(world, fairyTarget.get(), scheduler)) {
 
                 Entity sapling = Factory.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
 
@@ -82,12 +82,7 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
     }
 
-    private boolean moveToFairy(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            world.removeEntity(scheduler, target);
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        world.removeEntity(scheduler, target);
     }
 }
