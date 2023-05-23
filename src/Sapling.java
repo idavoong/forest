@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class Sapling extends Plant implements Entity, EntityAnimation, EntityActivity {
+public final class Sapling extends Plant {
     private int healthLimit;
 
     public Sapling(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health, int healthLimit) {

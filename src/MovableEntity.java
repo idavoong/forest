@@ -1,4 +1,4 @@
-public interface MovableEntity extends Entity, EntityAnimation, EntityActivity{
+public interface MovableEntity extends EntityActivity{
     default Point nextPosition(WorldModel world, Point destPos) {
         Class c;
         if (this.getClass() == Fairy.class) {

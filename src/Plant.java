@@ -2,13 +2,13 @@ import processing.core.PImage;
 
 import java.util.List;
 
-abstract class Plant implements Entity, EntityAnimation, EntityActivity {
-    double TREE_ANIMATION_MAX = 0.600;
-    double TREE_ANIMATION_MIN = 0.050;
-    double TREE_ACTION_MAX = 1.400;
-    double TREE_ACTION_MIN = 1.000;
-    int TREE_HEALTH_MAX = 3;
-    int TREE_HEALTH_MIN = 1;
+abstract class Plant implements EntityActivity {
+    private final double TREE_ANIMATION_MAX = 0.600;
+    private final double TREE_ANIMATION_MIN = 0.050;
+    private final double TREE_ACTION_MAX = 1.400;
+    private final double TREE_ACTION_MIN = 1.000;
+    private final int TREE_HEALTH_MAX = 3;
+    private final int TREE_HEALTH_MIN = 1;
 
     private String id;
     private Point position;

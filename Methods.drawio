@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-19T07:32:36.170Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="TMzx0PxcWGta-9GCpAJ8" version="21.3.2" type="device" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-05-23T10:25:25.168Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="tAxpuF_CQ75f_SbqPWfQ" version="21.3.2" type="device" pages="2">
   <diagram id="Yo6Zvny2ZRX3JAPKxXua" name="Page 2">
-    <mxGraphModel dx="1358" dy="1771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1290" dy="1737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -241,7 +241,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="UISaML37r__2dC50zuFC" name="p3">
-    <mxGraphModel dx="1972" dy="554" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5609" dy="1820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -290,113 +290,271 @@
             <mxPoint x="1230" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-1" value="Entity &lt;&lt;interface&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="-20" y="770" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-1" value="Entity &lt;&lt;interface&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-1140" y="660" width="200" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-2" value="&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-1">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-2" value="&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-1" vertex="1">
+          <mxGeometry y="26" width="200" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-1">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-1" vertex="1">
+          <mxGeometry y="60" width="200" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-4" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-1">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-4" value="+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(): void&#xa;getCurrentImage(): PImage&#xa;nextImage(): void&#xa;getImageIndex(): int&#xa;log(): String &lt;&lt;default&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-1" vertex="1">
+          <mxGeometry y="68" width="200" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-5" value="House" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="-840" y="1450" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-5" value="House" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-1510" y="350" width="180" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-6" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-5">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-6" value="-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-5" vertex="1">
+          <mxGeometry y="26" width="180" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-5">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-5" vertex="1">
+          <mxGeometry y="100" width="180" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-8" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-5">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-8" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+nextImage(): void&#xa;+getImageIndex(): int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-5" vertex="1">
+          <mxGeometry y="108" width="180" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-9" value="Obstacle" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="-290" y="1450" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-9" value="Obstacle" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-440" y="410" width="180" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-10" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-9">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-10" value="-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-animationPeriod: int&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-9" vertex="1">
+          <mxGeometry y="26" width="180" height="84" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-9">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-9" vertex="1">
+          <mxGeometry y="110" width="180" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-12" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-9">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-12" value="+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;+getActionPeriod(): double&#xa;+getImageIndex():&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-9" vertex="1">
+          <mxGeometry y="118" width="180" height="132" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-13" value="Fairy" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="220" y="1450" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-13" value="Fairy" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-980" y="1020" width="360" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-14" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-13">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-14" value="-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-13" vertex="1">
+          <mxGeometry y="26" width="360" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-13">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-13" vertex="1">
+          <mxGeometry y="120" width="360" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-16" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-13">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-16" value="+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;+getActionPeriod(): double&#xa;+getImageIndex(): int&#xa;+executeActivity(WorldModel, ImageStore, EventScheduler): void&#xa;+moveToHelper(WorldModel, Entity, EventScheduler): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-13" vertex="1">
+          <mxGeometry y="128" width="360" height="152" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-17" value="Stump" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="740" y="1450" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-17" value="Stump" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-940" y="210" width="170" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-18" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-17">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-18" value="-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-17" vertex="1">
+          <mxGeometry y="26" width="170" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-19" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-17">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-19" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-17" vertex="1">
+          <mxGeometry y="100" width="170" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-20" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-17">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-20" value="+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+nextImage(): void&#xa;+getImageIndex(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-17" vertex="1">
+          <mxGeometry y="108" width="170" height="102" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-21" value="Sapling" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="-830" y="2150" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-21" value="Sapling" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="590" y="1620" width="370" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-22" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-21">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-22" value="-healthLimit: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-21" vertex="1">
+          <mxGeometry y="26" width="370" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-21">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-21" vertex="1">
+          <mxGeometry y="60" width="370" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-24" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-21">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-24" value="+getHealthLimit(): int&#xa;+executeActivity(WorldModel, ImageStore, EventScheduler): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-21" vertex="1">
+          <mxGeometry y="68" width="370" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-25" value="Tree" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="-300" y="2160" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-25" value="Tree" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1650" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-26" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-25">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-27" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-25" vertex="1">
+          <mxGeometry y="26" width="160" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-27" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-25">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-29" value="DudeFull" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-1050" y="1690" width="370" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-28" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-25">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-31" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-29" vertex="1">
+          <mxGeometry y="26" width="370" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-29" value="DudeFull" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="220" y="2160" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-32" value="+executeActivity(WorldModel, ImageStore, EventScheduler): void&#xa;+moveToHelper(WorldModel, Entity, EventScheduler): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-29" vertex="1">
+          <mxGeometry y="80" width="370" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-30" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-29">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-33" value="DudeNotFull" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" parent="1" vertex="1">
+          <mxGeometry x="-1530" y="1940" width="370" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-31" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-29">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-34" value="-resourceCount:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-33" vertex="1">
+          <mxGeometry y="26" width="370" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-32" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-29">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-35" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-33" vertex="1">
+          <mxGeometry y="60" width="370" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-33" value="DudeNotFull" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
-          <mxGeometry x="740" y="2160" width="460" height="640" as="geometry" />
+        <mxCell id="80gzapR56s2BgOyHMlyC-36" value="+executeActivity(WorldModel, ImageStore, EventScheduler): void&#xa;+transform(WorldModel, ImageStore, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="80gzapR56s2BgOyHMlyC-33" vertex="1">
+          <mxGeometry y="68" width="370" height="52" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-34" value="-kind: EntityKind&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-resourceCount: int&#xa;-actionPeriod: int&#xa;-animationPeriod: int&#xa;-health: int&#xa;-healthLimit: int&#xa;-TREE_ANIMATION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;static&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;static&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;static&gt;&gt;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-33">
-          <mxGeometry y="26" width="460" height="244" as="geometry" />
+        <mxCell id="EepJL3Q59dCYrceCNZFe-1" value="EntityActivity &lt;&lt;interface&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
+          <mxGeometry x="-420" y="1260" width="370" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-35" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-33">
-          <mxGeometry y="270" width="460" height="8" as="geometry" />
+        <mxCell id="EepJL3Q59dCYrceCNZFe-2" value="&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-1">
+          <mxGeometry y="26" width="370" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="80gzapR56s2BgOyHMlyC-36" value="+getKind(): EntityKind&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+getHealth(): int&#xa;+setPosition(Point): void&#xa;+log(): String&#xa;+executeSaplingActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeTreeActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeFairyActivity(Entity, WorldModel, ImageStore, EventScheduler): void &#xa;+executeDudeNotFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;+executeDudeFullActivity(Entity, WorldModel, ImageStore, EventScheduler): void&#xa;-transformNotFull(Entity, WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformFull(Entity, WorldModel, EventScheduler, ImageStore): void&#xa;-nextPositionFairy(Entity, WorldModel, Point): Point &#xa;-nextPositionDude(Entity, WorldModel, Point): Point&#xa;+scheduleActions(Entity, EventScheduler, WorldModel, ImageStore): void&#xa;+getCurrentImage(Object): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformTree(WorldModel, EventScheduler, ImageStore): boolean&#xa;-transformSapling(WorldModel, EventScheduler, ImageStore): boolearn&#xa;-moveToFairy(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToNotFull(WorldModel, Entity, EventScheduler): boolean&#xa;-moveToFull(WorldModel, Entity, EventScheduler): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="80gzapR56s2BgOyHMlyC-33">
-          <mxGeometry y="278" width="460" height="362" as="geometry" />
+        <mxCell id="EepJL3Q59dCYrceCNZFe-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-1">
+          <mxGeometry y="90" width="370" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-4" value="+executeActivity(WorldModel, ImageStore, EventScheduler): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-1">
+          <mxGeometry y="98" width="370" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-6" value="EntityAnimation &lt;&lt;interface&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
+          <mxGeometry x="-460" y="860" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-6">
+          <mxGeometry y="26" width="430" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-9" value="+getAnimationPeriod(): double&#xa;+getActionPeriod(): double&#xa;scheduleActions(EventScheduler, WorldModel, ImageStore): void &lt;&lt;default&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-6">
+          <mxGeometry y="80" width="430" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-10" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.014;entryY=0.373;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.454;exitY=0.004;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-6" target="80gzapR56s2BgOyHMlyC-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-990" y="930" as="sourcePoint" />
+            <mxPoint x="-940" y="880" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-11" value="Dude &lt;&lt;abstract class&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
+          <mxGeometry x="-1570" y="1330" width="440" height="340" as="geometry">
+            <mxRectangle x="-1660" y="1800" width="180" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-12" value="-id: String&#xa;-position: Point&#xa;-images: List&lt;PImge&gt;&#xa;-imageIndex: int&#xa;-resourceLimit: int&#xa;-actionPeriod: double&#xa;-animationPeriod: double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-11">
+          <mxGeometry y="26" width="440" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-13" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-11">
+          <mxGeometry y="140" width="440" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-14" value="+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;+getActionPeriod(): double&#xa;+getImageIndex(): int&#xa;+getResourceLimit(): int&#xa;+executeActivity(WorldModel, EventScheduler, ImageStore): void &lt;&lt;abstract&gt;&gt;&#xa;+transform(WorldModel, EventScheduler, ImageStore): boolean&#xa;+moveToHelper(WorldModel, Entity, EventScheduler): void &lt;&lt;abstract&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-11">
+          <mxGeometry y="148" width="440" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-15" value="MovableEntity &lt;&lt;interface&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
+          <mxGeometry x="-480" y="1780" width="370" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-16" value="&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-15">
+          <mxGeometry y="26" width="370" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-17" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-15">
+          <mxGeometry y="60" width="370" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-18" value="+nextPosition(WorldModel, Point): Point &lt;&lt;default&gt;&gt;&#xa;+moveTo(WorldModel, Entity, EventScheduler): boolean &lt;&lt;default&gt;&gt;&#xa;+moveToHelper(WorldModel, Entity, EventScheduler): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-15">
+          <mxGeometry y="68" width="370" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-27" value="Plant &lt;&lt;abstract class&gt;&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;hachureGap=4;pointerEvents=0;sketch=0;fontColor=#5AA9E6;strokeColor=#FF6392;fillColor=#FFE45E;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1060" width="380" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-28" value="-TREE_ANIMATION_MAX: double &lt;&lt;final&gt;&gt;&#xa;-TREE_ANIMATION_MIN: double &lt;&lt;final&gt;&gt;&#xa;-TREE_ACTION_MAX: double &lt;&lt;final&gt;&gt;&#xa;-TREE_ACTION_MIN: double &lt;&lt;final&gt;&gt;&#xa;-TREE_HEALTH_MAX: int &lt;&lt;final&gt;&gt;&#xa;-TREE_HEALTH_MIN: int &lt;&lt;final&gt;&gt;&#xa;&#xa;-id: String&#xa;-position: Point&#xa;-images: List&lt;PImage&gt;&#xa;-imageIndex: int&#xa;-actionPeriod: double&#xa;-animationPeriod: double&#xa;-health: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-27">
+          <mxGeometry y="26" width="380" height="204" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-27">
+          <mxGeometry y="230" width="380" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-30" value="+subHealth(): void&#xa;+addHealth(): void&#xa;+getHealth(): int&#xa;+getId(): String&#xa;+getPosition(): Point&#xa;+setPosition(Point): void&#xa;+getCurrentImage(): PImage&#xa;+getAnimationPeriod(): double&#xa;+nextImage(): void&#xa;+getActionPeriod(): double&#xa;+getImageIndex(): int&#xa;+executeActivity(WorldModel, ImageStore, EventScheduler): void&#xa;-transformPlant(WorldModel, EventScheduler, ImageStore): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EepJL3Q59dCYrceCNZFe-27">
+          <mxGeometry y="238" width="380" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-34" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.669;exitY=-0.009;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.677;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-13" target="80gzapR56s2BgOyHMlyC-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1410" y="910" as="sourcePoint" />
+            <mxPoint x="-1360" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-38" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-10" target="80gzapR56s2BgOyHMlyC-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-550" y="290" as="sourcePoint" />
+            <mxPoint x="-640" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-39" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.702;entryY=-0.021;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.465;exitY=1.03;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-12" target="EepJL3Q59dCYrceCNZFe-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-690" y="600" as="sourcePoint" />
+            <mxPoint x="-640" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.424;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-8" target="80gzapR56s2BgOyHMlyC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1140" y="290" as="sourcePoint" />
+            <mxPoint x="-1090" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-44" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.551;entryY=1.05;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.535;exitY=-0.04;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-1" target="EepJL3Q59dCYrceCNZFe-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-190" y="1290" as="sourcePoint" />
+            <mxPoint x="-140" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-45" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.347;entryY=1.027;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.404;exitY=-0.033;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-15" target="EepJL3Q59dCYrceCNZFe-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-400" y="1540" as="sourcePoint" />
+            <mxPoint x="-350" y="1490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-46" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.386;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.258;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-11" target="80gzapR56s2BgOyHMlyC-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-820" y="1070" as="sourcePoint" />
+            <mxPoint x="-770" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-47" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.012;entryY=0.906;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.005;exitY=0.817;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-12" target="EepJL3Q59dCYrceCNZFe-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-450" y="1440" as="sourcePoint" />
+            <mxPoint x="-400" y="1390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-48" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.598;exitY=-0.022;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.313;entryY=1.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-33" target="EepJL3Q59dCYrceCNZFe-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1040" y="1750" as="sourcePoint" />
+            <mxPoint x="-990" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-49" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-34" target="EepJL3Q59dCYrceCNZFe-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-800" y="1740" as="sourcePoint" />
+            <mxPoint x="-750" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-50" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.281;exitY=0.002;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.76;entryY=1.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-29" target="EepJL3Q59dCYrceCNZFe-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-800" y="1740" as="sourcePoint" />
+            <mxPoint x="-750" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-51" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.137;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-29" target="EepJL3Q59dCYrceCNZFe-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-660" y="1730" as="sourcePoint" />
+            <mxPoint x="-750" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-52" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.008;entryY=0.131;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.011;exitY=0.424;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="EepJL3Q59dCYrceCNZFe-28" target="EepJL3Q59dCYrceCNZFe-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="1340" as="sourcePoint" />
+            <mxPoint x="60" y="1290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-53" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.48;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-25" target="EepJL3Q59dCYrceCNZFe-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="1540" as="sourcePoint" />
+            <mxPoint x="550" y="1490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-54" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.233;exitY=-0.038;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.813;entryY=1.019;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-21" target="EepJL3Q59dCYrceCNZFe-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="1540" as="sourcePoint" />
+            <mxPoint x="550" y="1490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-55" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.549;exitY=1.018;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-20" target="80gzapR56s2BgOyHMlyC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-760" y="550" as="sourcePoint" />
+            <mxPoint x="-710" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EepJL3Q59dCYrceCNZFe-57" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.656;exitY=1.025;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.222;entryY=-0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="80gzapR56s2BgOyHMlyC-16" target="EepJL3Q59dCYrceCNZFe-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-520" y="1550" as="sourcePoint" />
+            <mxPoint x="-470" y="1500" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

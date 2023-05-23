@@ -34,7 +34,7 @@ public final class Obstacle implements Entity, EntityAnimation {
     }
 
     public void setPosition(Point position) {
-        this.position = position;
+
     }
 
     public PImage getCurrentImage() {
