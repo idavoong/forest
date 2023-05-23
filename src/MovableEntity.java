@@ -36,5 +36,5 @@ public interface MovableEntity extends Entity, EntityAnimation, EntityActivity{
         }
     }
 
-    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
+    void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
 }
