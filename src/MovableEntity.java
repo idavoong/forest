@@ -1,10 +1,8 @@
 public interface MovableEntity extends Entity, EntityAnimation, EntityActivity{
     default Point nextPosition(WorldModel world, Point destPos) {
-        Class c;
+        Class c = Stump.class;
         if (this.getClass() == Fairy.class) {
             c = House.class;
-        } else {
-            c = Stump.class;
         }
 
         int horiz = Integer.signum(destPos.x - getPosition().x);
@@ -23,11 +21,18 @@ public interface MovableEntity extends Entity, EntityAnimation, EntityActivity{
     }
 
     default boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
-        Point nextPos = nextPosition(world, target.getPosition());
+        if (Point.adjacent(getPosition(), target.getPosition())) {
+            moveToHelper(world, target, scheduler);
+            return true;
+        } else {
+            Point nextPos = nextPosition(world, target.getPosition());
 
-        if (!getPosition().equals(nextPos)) {
-            world.moveEntity(scheduler, this, nextPos);
+            if (!getPosition().equals(nextPos)) {
+                world.moveEntity(scheduler, this, nextPos);
+            }
+            return false;
         }
-        return false;
     }
+
+    void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
 }

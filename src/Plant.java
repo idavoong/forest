@@ -52,14 +52,6 @@ abstract class Plant implements Entity, EntityAnimation, EntityActivity {
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -75,6 +67,10 @@ abstract class Plant implements Entity, EntityAnimation, EntityActivity {
     public double getActionPeriod() {
         return actionPeriod;
     };
+
+    public int getImageIndex() {
+        return imageIndex;
+    }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         if (!transformPlant(world, scheduler, imageStore)) {

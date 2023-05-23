@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class DudeFull implements Entity, EntityAnimation, EntityActivity, MovableEntity {
+public final class DudeFull implements Entity, EntityAnimation, EntityActivity, MovableEntity, Dude {
     private String id;
     private Point position;
     private List<PImage> images;
@@ -43,14 +43,6 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -67,10 +59,14 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         return actionPeriod;
     };
 
+    public int getImageIndex() {
+        return imageIndex;
+    }
+
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> fullTarget = world.findNearest(position, new ArrayList<>(List.of(House.class)));
 
-        if (fullTarget.isPresent() && moveToFull(world, fullTarget.get(), scheduler)) {
+        if (fullTarget.isPresent() && moveTo(world, fullTarget.get(), scheduler)) {
             transformFull(world, scheduler, imageStore);
         } else {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
@@ -86,11 +82,7 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         ((EntityAnimation)dude).scheduleActions(scheduler, world, imageStore);
     }
 
-    private boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+
     }
 }

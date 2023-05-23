@@ -10,7 +10,7 @@ import processing.core.PImage;
  * An entity that exists in the world. See EntityKind for the
  * different kinds of entities that exist.
  */
-public final class DudeNotFull implements Entity, EntityAnimation, EntityActivity, MovableEntity {
+public final class DudeNotFull implements Entity, EntityAnimation, EntityActivity, MovableEntity, Dude {
     private String id;
     private Point position;
     private List<PImage> images;
@@ -43,14 +43,6 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -67,10 +59,14 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         return actionPeriod;
     };
 
+    public int getImageIndex() {
+        return imageIndex;
+    }
+
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
 
-        if (target.isEmpty() || !moveToNotFull(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
+        if (target.isEmpty() || !moveTo(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
@@ -91,13 +87,8 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         return false;
     }
 
-    private boolean moveToNotFull(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            resourceCount += 1;
-            ((Plant)target).subHealth();
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        resourceCount += 1;
+        ((Plant)target).subHealth();
     }
 }

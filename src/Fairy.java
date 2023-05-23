@@ -39,14 +39,6 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -63,6 +55,10 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         return actionPeriod;
     };
 
+    public int getImageIndex() {
+        return imageIndex;
+    }
+
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> fairyTarget = world.findNearest(position, new ArrayList<>(List.of(Stump.class)));
@@ -70,7 +66,7 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         if (fairyTarget.isPresent()) {
             Point tgtPos = fairyTarget.get().getPosition();
 
-            if (moveToFairy(world, fairyTarget.get(), scheduler)) {
+            if (moveTo(world, fairyTarget.get(), scheduler)) {
 
                 Entity sapling = Factory.createSapling(Functions.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Functions.SAPLING_KEY), 0);
 
@@ -82,12 +78,7 @@ public final class Fairy implements Entity, EntityAnimation, EntityActivity, Mov
         scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
     }
 
-    private boolean moveToFairy(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Point.adjacent(position, target.getPosition())) {
-            world.removeEntity(scheduler, target);
-            return true;
-        } else {
-            return moveTo(world, target, scheduler);
-        }
+    public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        world.removeEntity(scheduler, target);
     }
 }
