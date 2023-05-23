@@ -66,12 +66,12 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));
 
-        if (target.isEmpty() || !moveTo(world, target.get(), scheduler) || !transformNotFull(world, scheduler, imageStore)) {
+        if (target.isEmpty() || !moveTo(world, target.get(), scheduler) || !transform(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
-    private boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    private boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (resourceCount >= resourceLimit) {
             Entity dude = Factory.createDudeFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
 
