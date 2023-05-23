@@ -43,14 +43,6 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -65,7 +57,11 @@ public final class DudeNotFull implements Entity, EntityAnimation, EntityActivit
 
     public double getActionPeriod() {
         return actionPeriod;
-    };
+    }
+
+    public int getImageIndex() {
+        return imageIndex;
+    }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> target = world.findNearest(position, new ArrayList<>(Arrays.asList(Tree.class, Sapling.class)));

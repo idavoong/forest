@@ -16,17 +16,15 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
     private List<PImage> images;
     private int imageIndex;
     private int resourceLimit;
-    private int resourceCount;
     private double actionPeriod;
     private double animationPeriod;
 
-    public DudeFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
+    public DudeFull(String id, Point position, List<PImage> images, int resourceLimit, double actionPeriod, double animationPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
         this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }
@@ -43,14 +41,6 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         this.position = position;
     }
 
-    /**
-     * Helper method for testing. Preserve this functionality while refactoring.
-     */
-    public String log(){
-        return this.id.isEmpty() ? null :
-                String.format("%s %d %d %d", this.id, this.position.x, this.position.y, this.imageIndex);
-    }
-
     public PImage getCurrentImage() {
         return images.get(imageIndex % images.size());
     }
@@ -65,7 +55,11 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
 
     public double getActionPeriod() {
         return actionPeriod;
-    };
+    }
+
+    public int getImageIndex() {
+        return imageIndex;
+    }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> fullTarget = world.findNearest(position, new ArrayList<>(List.of(House.class)));
