@@ -17,9 +17,17 @@ public interface Entity {
 
     void setPosition(Point position);
 
-    String log();
-
     PImage getCurrentImage();
 
     void nextImage();
+
+    int getImageIndex();
+
+    /**
+     * Helper method for testing. Preserve this functionality while refactoring.
+     */
+    default String log() {
+        return this.getId().isEmpty() ? null :
+                String.format("%s %d %d %d", this.getId(), this.getPosition().x, this.getPosition().y, this.getImageIndex());
+    };
 }

@@ -11,7 +11,6 @@ import processing.core.PImage;
  * different kinds of entities that exist.
  */
 public final class Tree extends Plant implements Entity, EntityAnimation, EntityActivity {
-
     public Tree(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health) {
         super(id, position, images, actionPeriod, animationPeriod, health);
     }
