@@ -38,6 +38,6 @@ public class Factory {
 
     // don't technically need resource count ... full
     public static DudeFull createDudeFull(String id, Point position, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
-        return new DudeFull(id, position, images, resourceLimit, 0, actionPeriod, animationPeriod);
+        return new DudeFull(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 }

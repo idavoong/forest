@@ -16,17 +16,15 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
     private List<PImage> images;
     private int imageIndex;
     private int resourceLimit;
-    private int resourceCount;
     private double actionPeriod;
     private double animationPeriod;
 
-    public DudeFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
+    public DudeFull(String id, Point position, List<PImage> images, int resourceLimit, double actionPeriod, double animationPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
         this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }
@@ -67,19 +65,20 @@ public final class DudeFull implements Entity, EntityAnimation, EntityActivity, 
         Optional<Entity> fullTarget = world.findNearest(position, new ArrayList<>(List.of(House.class)));
 
         if (fullTarget.isPresent() && moveTo(world, fullTarget.get(), scheduler)) {
-            transformFull(world, scheduler, imageStore);
+            transform(world, scheduler, imageStore);
         } else {
             scheduler.scheduleEvent(this, Functions.createActivityAction(this, world, imageStore), actionPeriod);
         }
     }
 
-    private void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         Entity dude = Factory.createDudeNotFull(id, position, actionPeriod, animationPeriod, resourceLimit, images);
 
         world.removeEntity(scheduler, this);
 
         world.addEntity(dude);
         ((EntityAnimation)dude).scheduleActions(scheduler, world, imageStore);
+        return true;
     }
 
     public void moveToHelper(WorldModel world, Entity target, EventScheduler scheduler) {
