@@ -17,7 +17,6 @@ public interface MovableEntity extends EntityActivity{
 
         int horiz = Integer.signum(destPos.x - getPosition().x);
         int vert = Integer.signum(destPos.y - getPosition().y);
-        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
         Predicate<Point> canPassThrough = curPoint -> {
             if (horiz == 0 || world.isOccupied(curPoint) && world.getOccupancyCell(curPoint).getClass() != c) {
