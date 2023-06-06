@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 
 public interface MovableEntity extends EntityActivity{
     default Point nextPosition(WorldModel world, Point destPos) {
-        PathingStrategy strat = new SingleStepPathingStrategy();
+        //PathingStrategy strat = new SingleStepPathingStrategy();
+        PathingStrategy strat = new AStarPathingStrategy();
         //exclude the start / end, and be in ascending order
 
         Class c;
@@ -15,16 +16,11 @@ public interface MovableEntity extends EntityActivity{
             c = Stump.class;
         }
 
-        int horiz = Integer.signum(destPos.x - getPosition().x);
-        int vert = Integer.signum(destPos.y - getPosition().y);
-
         Predicate<Point> canPassThrough = curPoint -> {
-            if (horiz == 0 || world.isOccupied(curPoint) && world.getOccupancyCell(curPoint).getClass() != c) {
-                if (vert == 0 || world.isOccupied(curPoint) && world.getOccupancyCell(curPoint).getClass() != c) {
-                    return false;
-                }
+            if (world.withinBounds(curPoint) && ((!world.isOccupied(curPoint) || world.getOccupancyCell(curPoint).getClass() == c))){
+                return true;
             }
-            return true;
+            return false;
         };
 
         BiPredicate<Point, Point> withinReach = (curPoint, destPoint) -> {
