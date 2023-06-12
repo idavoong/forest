@@ -150,7 +150,7 @@ public final class WorldModel {
         return occupancy[pos.y][pos.x];
     }
 
-    private void removeEntityAt(Point pos) {
+    public void removeEntityAt(Point pos) {
         if (withinBounds(pos) && getOccupancyCell(pos) != null) {
             Entity entity = getOccupancyCell(pos);
     

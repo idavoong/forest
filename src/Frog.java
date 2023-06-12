@@ -6,11 +6,7 @@ import java.util.Optional;
 
 import processing.core.PImage;
 
-/**
- * An entity that exists in the world. See EntityKind for the
- * different kinds of entities that exist.
- */
-public final class Fairy implements MovableEntity {
+public final class Frog implements MovableEntity {
     private String id;
     private Point position;
     private List<PImage> images;
@@ -18,7 +14,7 @@ public final class Fairy implements MovableEntity {
     private double actionPeriod;
     private double animationPeriod;
 
-    public Fairy(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
+    public Frog(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
@@ -61,17 +57,17 @@ public final class Fairy implements MovableEntity {
 
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> fairyTarget = world.findNearest(position, new ArrayList<>(List.of(Stump.class)));
+        Optional<Entity> frogTarget = world.findNearest(position, new ArrayList<>(List.of(Tree.class, Sapling.class, Stump.class)));
 
-        if (fairyTarget.isPresent()) {
-            Point tgtPos = fairyTarget.get().getPosition();
+        if (frogTarget.isPresent()) {
+            Point tgtPos = frogTarget.get().getPosition();
 
-            if (moveTo(world, fairyTarget.get(), scheduler)) {
+            if (moveTo(world, frogTarget.get(), scheduler)) {
 
-                Entity sapling = Factory.createSapling(Parse.SAPLING_KEY + "_" + fairyTarget.get().getId(), tgtPos, imageStore.getImageList(Parse.SAPLING_KEY), 0);
+                Entity flower = Factory.createFlower(Parse.SAPLING_KEY + "_" + frogTarget.get().getId(), tgtPos, 0.5, imageStore.getImageList("flower"));
 
-                world.addEntity(sapling);
-                ((EntityAnimation)sapling).scheduleActions(scheduler, world, imageStore);
+                world.addEntity(flower);
+                ((EntityAnimation)flower).scheduleActions(scheduler, world, imageStore);
             }
         }
 

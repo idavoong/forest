@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 import processing.core.*;
 
@@ -68,13 +70,36 @@ public final class VirtualWorld extends PApplet {
     // Be sure to refactor this method as appropriate
     public void mousePressed() {
         Point pressed = mouseToPoint();
-        System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
 
-        Optional<Entity> entityOptional = world.getOccupant(pressed);
-        if (entityOptional.isPresent()) {
-            Entity entity = entityOptional.get();
-            //System.out.println(entity.getId() + ": " + entity.getKind() + " : " + entity.getHealth());
+        List<Point> neighbors = new ArrayList<Point>(List.of(
+                pressed,
+                new Point(pressed.x, pressed.y - 1),
+                new Point(pressed.x, pressed.y + 1),
+                new Point(pressed.x - 1, pressed.y),
+                new Point(pressed.x + 1, pressed.y)
+        ));
+
+        for (Point neighbor: neighbors) {
+            world.setBackgroundCell(neighbor, new Background("dirt", imageStore.getImageList("stone")));
+            if (world.isOccupied(neighbor) && world.getOccupancyCell(neighbor).getClass() == Tree.class) {
+                world.removeEntityAt(neighbor);
+                Frog frog = Factory.createFrog("frog", neighbor, 1, 0.1, imageStore.getImageList("frog"));
+                world.addEntity(frog);
+                frog.scheduleActions(scheduler, world, imageStore);
+            }
         }
+
+        Entity duck = Factory.createDuck("duck", pressed, 1,0.5, imageStore.getImageList("duck"));
+
+        world.addEntity(duck);
+        ((EntityAnimation)duck).scheduleActions(scheduler, world, imageStore);
+
+        System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
+//        Optional<Entity> entityOptional = world.getOccupant(pressed);
+//        if (entityOptional.isPresent()) {
+//            Entity entity = entityOptional.get();
+//            //System.out.println(entity.getId() + ": " + entity.getKind() + " : " + entity.getHealth());
+//        }
 
     }
 

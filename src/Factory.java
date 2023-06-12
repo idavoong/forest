@@ -40,4 +40,20 @@ public class Factory {
     public static DudeFull createDudeFull(String id, Point position, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
         return new DudeFull(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
+
+    public static Duck createDuck(String id, Point position, double actionPeriod, double animationPeriod, List<PImage> images) {
+        return new Duck(id, position, images, actionPeriod, animationPeriod);
+    }
+
+    public static Frog createFrog(String id, Point position, double actionPeriod, double animationPeriod, List<PImage> images) {
+        return new Frog(id, position, images, actionPeriod, animationPeriod);
+    }
+
+    public static Egg createEgg(String id, Point position, double animationPeriod, List<PImage> images) {
+        return new Egg(id, position, images, animationPeriod);
+    }
+
+    public static Flower createFlower(String id, Point position, double animationPeriod, List<PImage> images) {
+        return new Flower(id, position, images, animationPeriod);
+    }
 }

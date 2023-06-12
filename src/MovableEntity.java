@@ -36,30 +36,6 @@ public interface MovableEntity extends EntityActivity{
             return this.getPosition();
         }
         return path.get(0);
-
-        //return the first point from path
-        //handle the case where the path is empty - stay where we are
-
-//        Class c;
-//        if (this.getClass() == Fairy.class) {
-//            c = House.class;
-//        } else {
-//            c = Stump.class;
-//        }
-//
-//        int horiz = Integer.signum(destPos.x - getPosition().x);
-//        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
-//
-//        if (horiz == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != c) {
-//            int vert = Integer.signum(destPos.y - getPosition().y);
-//            newPos = new Point(getPosition().x, getPosition().y + vert);
-//
-//            if (vert == 0 || world.isOccupied(newPos) && world.getOccupancyCell(newPos).getClass() != c) {
-//                newPos = getPosition();
-//            }
-//        }
-//
-//        return newPos;
     }
 
     default boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
