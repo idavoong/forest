@@ -76,7 +76,11 @@ public final class VirtualWorld extends PApplet {
                 new Point(pressed.x, pressed.y - 1),
                 new Point(pressed.x, pressed.y + 1),
                 new Point(pressed.x - 1, pressed.y),
-                new Point(pressed.x + 1, pressed.y)
+                new Point(pressed.x + 1, pressed.y),
+                new Point(pressed.x + 1, pressed.y + 1),
+                new Point(pressed.x + 1, pressed.y - 1),
+                new Point(pressed.x - 1, pressed.y + 1),
+                new Point(pressed.x - 1, pressed.y - 1)
         ));
 
         for (Point neighbor: neighbors) {
